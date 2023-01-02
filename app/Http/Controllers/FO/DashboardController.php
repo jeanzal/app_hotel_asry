@@ -140,6 +140,10 @@ class DashboardController extends Controller
         $trsApr = new Sisasaldo();
         $trsApr->tgl_trs = $request->tgl_trs;
         $trsApr->sisa_saldo = $request->sisa_saldo;
+        $trsApr->total_kas_masuk = $request->total_kas_masuk;
+        $trsApr->total_kas_keluar = $request->total_kas_keluar;
+        $trsApr->total_setor_ke_sgh = $request->total_setor_ke_sgh;
+        // dd($trsApr);
 
         try {
             $trsApr->save();

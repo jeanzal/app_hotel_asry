@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->dateTime('tgl_trs');
             $table->bigInteger('sisa_saldo');
+            $table->bigInteger('total_kas_masuk');
+            $table->bigInteger('total_kas_keluar');
+            $table->bigInteger('total_setor_ke_sgh');
             $table->timestamps();
         });
     }

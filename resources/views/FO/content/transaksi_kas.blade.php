@@ -25,16 +25,16 @@
                             <a type="button" class="col-4 fw-bold p-2 btn btn-sm btn-info approveTrs within-reportFO"> -> Approve Kas </a>
                         </div>
                     </div>
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover table-responsive table-striped">
                         <thead class="table-success">
                             <tr>
-                                <th style="width: 40px; text-align:center;">No</th>
-                                <th style="width: 250px; text-align:center;">Tanggal Transaksi</th>
-                                <th style="width: 400px; text-align:center;">Keterangan</th>
-                                <th style="width: 200px; text-align:center;">Kas Masuk</th>
-                                <th style="width: 120px; text-align:center;">Kas Keluar</th>
-                                <th style="width: 120px; text-align:center;">Setoran AGH</th>
-                                <th style="width: 200px; text-align:center;">Saldo</th>
+                                <th style="text-align:center;">No</th>
+                                <th style="text-align:center;">Tanggal Transaksi</th>
+                                <th style="text-align:center;">Keterangan</th>
+                                <th style="text-align:center;">Kas Masuk</th>
+                                <th style="text-align:center;">Kas Keluar</th>
+                                <th style="text-align:center;">Setoran AGH</th>
+                                <th style="text-align:center;">Saldo</th>
                             </tr>
                         </thead>
                         @php
@@ -62,13 +62,13 @@
                                 @endphp
                             <tbody>
                                 <tr>
-                                    <td style="width: 40px">{{ $no++ }}</td>
-                                    <td style="width: 250px">{{ $formatTRS }}</td>
-                                    <td style="width: 400px">{{ $d->ket }}</td>
-                                    <td style="width: 200px">@currency($d->kas_masuk)</td>
-                                    <td style="width: 120px">@currency($d->kas_keluar)</td>
-                                    <td style="width: 120px">@currency($d->setoran_agh_to_sgh)</td>
-                                    <td style="width: 200px">@currency($saldo_jumlah)</td>
+                                    <td >{{ $no++ }}</td>
+                                    <td >{{ $formatTRS }}</td>
+                                    <td >{{ $d->ket }}</td>
+                                    <td>@currency($d->kas_masuk)</td>
+                                    <td >@currency($d->kas_keluar)</td>
+                                    <td >@currency($d->setoran_agh_to_sgh)</td>
+                                    <td >@currency($saldo_jumlah)</td>
                                 </tr>
                                 
                                 @empty

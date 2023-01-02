@@ -19,19 +19,29 @@
                             $saldo_kemarin = 0;
                             $total_saldo = 0;
                             $sum_trs = 0;
+                            $total_kas_masuk = 0;
+                            $total_kas_keluar = 0;
+                            $total_setor = 0;
                             foreach ($sisa_saldo_kemarin as $key ) {
                                 $saldo_kemarin = $key->sisa_saldo;    
                             }
                             foreach ($data_kas as $d) {
+                                $total_kas_masuk += $d->kas_masuk;
+                                $total_kas_keluar += $d->kas_keluar;
+                                $total_setor += $d->setoran_agh_to_sgh;
                                 $total_saldo += ($d->kas_masuk - $d->kas_keluar - $d->setoran_agh_to_sgh);
                             }
                             $sum_trs = $total_saldo + $saldo_kemarin;
                             @endphp 
                         <div class="form-floating mb-4">
-                            <input type="hidden" value="{{ $sum_trs }}" name="sisa_saldo">
+                            <input type="text" value="{{ $sum_trs }}" name="sisa_saldo">
+                            <input type="text" value="{{ $total_kas_masuk }}" name="total_kas_masuk">
+                            <input type="text" value="{{ $total_kas_keluar }}" name="total_kas_keluar">
+                            <input type="text" value="{{ $total_setor }}" name="total_setor_ke_sgh">
                            
                                     {{-- @currency($sum_trs) --}}
                             <p>Total Kas Hari Ini = <b>@currency($sum_trs)</b></p>
+                            <p>Total Kas Masuk Ini = <b>@currency($sum_trs)</b></p>
                         </div>
                         <div class="text-end mb-3">
                             <button type="button"

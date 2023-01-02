@@ -10,6 +10,6 @@ class Sisasaldo extends Model
     protected $primaryKey = "id";
 
     protected $fillable = [
-        'tgl_trs', 'sisa_saldo'
+        'tgl_trs', 'sisa_saldo', 'total_kas_masuk', 'total_kas_keluar', 'total_setor_ke_sgh'
     ];
 }
