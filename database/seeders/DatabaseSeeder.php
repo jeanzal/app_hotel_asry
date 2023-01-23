@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'frontofficeasrygraha@gmail.com',
             'password' => Hash::make('Frontofficeasg123_'),
         ]);
+
+
         DB::table('fo')->insert([
             'name' => 'Back Office',
             'role' => 'BO',
