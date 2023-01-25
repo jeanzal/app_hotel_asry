@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        Session::put('title', 'Dashboard Back Office');
+        Session::put('title', 'Dashboard');
         return view('BO/content/dashboard');
     }
 }
