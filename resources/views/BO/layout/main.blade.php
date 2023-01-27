@@ -46,15 +46,15 @@
                         <a class="image" href="profile.html"><img src="{{ asset('assets/images/orang.png') }}" alt="Admin"></a>
                         <div class="detail">
                             {{-- <h4>Admin</h4> --}}
-                            <small>Admin Back Office</small>                        
+                            <small>Admin | {{Auth::guard('BO')->user()->name}}</small>                        
                         </div>
                     </div>
                 </li>
                 <li><a href="{{route('BO.dashboard.index')}}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
                 <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>Data </span></a>
                     <ul class="ml-menu">
-                        <li><a href="mail-inbox.html">Data Kamar</a></li>
-                        <li><a href="chat.html">Data Tamu</a></li>                
+                        <li><a href="{{route('BO.kamar.index')}}">Data Kamar</a></li>
+                        <li><a href="{{route('BO.tamu.index')}}">Data Tamu</a></li>                
                     </ul>
                 </li>
                 <li><a href="{{route('BO.dashboard.index')}}"><i class="zmdi zmdi-assignment"></i><span>Transaksi</span></a></li>
@@ -228,6 +228,16 @@
     <script src="{{ asset('assets/bundles/mainscripts.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/pages/ecommerce.js') }}"></script>
     <script src="{{ asset('assets/js/pages/charts/jquery-knob.min.js') }}"></script>
+        
+    <!-- Jquery DataTable Plugin Js --> 
+    <script src="{{ asset('assets/bundles/datatablescripts.bundle.js') }}"></script>
+    <script src="{{ asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/tables/jquery-datatable.js') }}"></script>
 </body>
 
 </html>
