@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
-class TamuController extends Controller
+class TransaksiController extends Controller
 {
     public function index()
     {
-        Session::put('title', 'Data Tamu'); 
-        return view('BO/content/tamu');
+        Session::put('title', 'Data Transaksi'); 
+        return view('BO/content/transaksi/list');
     }
 }

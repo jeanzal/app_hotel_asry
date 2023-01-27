@@ -33,7 +33,8 @@ Route::group(['middleware' => 'auth:FO'], function () {
 Route::group(['middleware' => 'auth:BO'], function () {
     Route::prefix('BO')->group(function () {
         Route::get('/dashboard', [App\Http\Controllers\BO\DashboardController::class, 'index'])->name('BO.dashboard.index');
-        Route::get('/tamu', [App\Http\Controllers\BO\TamuController::class, 'index'])->name('BO.tamu.index');
+        Route::get('/transaksi', [App\Http\Controllers\BO\TransaksiController::class, 'index'])->name('BO.transaksi.index');
         Route::get('/kamar', [App\Http\Controllers\BO\KamarController::class, 'index'])->name('BO.kamar.index');
+        Route::post('/tambah_kamar', [App\Http\Controllers\BO\KamarController::class, 'tambah_kamar'])->name('BO.kamar.tambah_kamar');
     });
 });

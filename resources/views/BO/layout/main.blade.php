@@ -10,6 +10,7 @@
     <link rel="icon" href="{{ asset('assets/img/logo2.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
+    <link href="{{ asset('assets/plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet" />
 </head>
 
 <body class="theme-blush">
@@ -51,13 +52,8 @@
                     </div>
                 </li>
                 <li><a href="{{route('BO.dashboard.index')}}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
-                <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>Data </span></a>
-                    <ul class="ml-menu">
-                        <li><a href="{{route('BO.kamar.index')}}">Data Kamar</a></li>
-                        <li><a href="{{route('BO.tamu.index')}}">Data Tamu</a></li>                
-                    </ul>
-                </li>
-                <li><a href="{{route('BO.dashboard.index')}}"><i class="zmdi zmdi-assignment"></i><span>Transaksi</span></a></li>
+                <li><a href="{{route('BO.kamar.index')}}"><i class="zmdi zmdi-apps"></i><span>Data</span></a></li>
+                <li><a href="{{route('BO.transaksi.index')}}"><i class="zmdi zmdi-assignment"></i><span>Transaksi</span></a></li>
                 {{-- <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-assignment"></i><span>Projects</span></a>
                     <ul class="ml-menu">
                         <li><a href="project-list.html">Projects List</a></li>
@@ -238,6 +234,9 @@
     <script src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/jquery-datatable/buttons/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/tables/jquery-datatable.js') }}"></script>
+
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+<script src="{{ asset('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script> 
 </body>
 
 </html>

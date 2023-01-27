@@ -7,6 +7,17 @@
     <div class="card">
         <div class="header">
             <h2>{{Session::get('title')}}</h2>
+            @if(\Session::has('pesan-gagal'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ Session::get('pesan-gagal') }}
+                    </div>
+                @endif
+
+                @if(\Session::has('pesan-berhasil'))
+                    <div class="alert alert-success" role="alert">
+                        {{ Session::get('pesan-berhasil') }}
+                    </div>
+                @endif
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-6 text-center">
