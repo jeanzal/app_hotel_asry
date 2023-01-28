@@ -1,113 +1,94 @@
 @extends('BO/layout/main')
 @section('content')
 
-
-<div class="col-lg-12 col-md-12 col-sm-12">
-    <div class="card">
-        <div class="header">
-            <h2>{{Session::get('title')}}</h2>
-            <ul class="header-dropdown">
-                <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
-                    <ul class="dropdown-menu dropdown-menu-right slideUp">
-                        <li><a href="#" data-toggle="modal" data-target="#tambah_kamar"><i class="zmdi zmdi-plus"></i> Tambah</a></li>
-                        <li><a href=""><i class="zmdi zmdi-edit"></i> Set Harga</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="body">
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>No. Kamar</th>
-                            <th>Lokasi</th>
-                            <th>Harga</th>
-                            <th>Fasilitas</th>
-                            <th class="text-center">Aksi</th>
-                        </tr>
-                    </thead>
-                    @foreach($kamar as $kmr)
-                    <tbody>
-                        <tr>
-                            <th scope="row">{{ $kmr->no_kamar }}</th>
-                            <td>{{ $kmr->lokasi }}</td>
-                            <td>@currency($kmr->harga)</td>
-                            <td>{{ $kmr->fasilitas }}</td>
-                            <td class="text-center">
-                                <a href="" class="btn btn-sm btn-warning"><i class="zmdi zmdi-edit"></i></a>
-                                <button type="submit" class="btn btn-sm btn-danger"><i class="zmdi zmdi-delete"></i></button>
-                            </td>
-                        </tr>
-                        
-                    </tbody>
-                    @endforeach
-                </table>
-            </div>
-        </div>
+<div>
+    <div class="btn-wrapper">
+      <a href="#" class="btn btn-primary text-white me-0" data-toggle="modal" data-target="#tambah_kamar"><i class="icon-plus"></i> Tambah</a>
     </div>
+  </div>
+</div>
+<div class="tab-content tab-content-basic">
+    <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Nomor Kamar</th>
+                <th>Lokasi</th>
+                <th>Harga</th>
+                <th>Fasilitas</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            @foreach($kamar as $kmr) 
+            <tbody>
+                <tr>
+                    <td>{{ $kmr->no_kamar }}</td>
+                    <td>{{ $kmr->lokasi }}</td>
+                    <td>@currency($kmr->harga)</td>
+                    <td>{{ $kmr->fasilitas }}</td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                        <a onclick = "return confirm('Apakah Anda Yakin?')" href="#" class="btn btn-sm btn-danger">Hapus</a>
+                    </td>
+                </tr>
+            </tbody>
+            @endforeach
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="modal fade" id="tambah_kamar" tabindex="-1" role="dialog">
+<!-- Modal Tambah Kamar -->
+
+<div class="modal fade" id="tambah_kamar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="title" id="defaultModalLabel">Tambah Data</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Kamar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <form action="{{route('BO.kamar.index')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('BO.kamar.tambah_kamar')}}" method="post" enctype="multipart/form-data" >
                 @csrf
-                <div class="modal-body form-horizontal"> 
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-2 col-sm-4 form-control-label">
-                            <label for="no_kamar">No Kamar</label>
-                        </div>
-                        <div class="col-lg-8 col-md-10 col-sm-8">
-                            <div class="form-group">
-                                <input type="number" name="no_kamar" class="form-control" placeholder="Nomor Kamar" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix mb-3">
-                        <div class="col-lg-4 col-md-2 col-sm-4 form-control-label">
-                            <label for="lokasi">Lokasi</label>
-                        </div>
-                        <div class="col-lg-8 col-md-10 col-sm-8">
-                                <select class="form-control show-tick" name="lokasi">
-                                    <option value="">-- Please select --</option>
-                                    <option value="Lantai 1">Lantai 1</option>
-                                    <option value="Lantai 2">Lantai 2</option>
-                                </select>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-2 col-sm-4 form-control-label">
-                            <label for="no_kamar">Harga</label>
-                        </div>
-                        <div class="col-lg-8 col-md-10 col-sm-8">
-                            <div class="form-group">
-                                <input type="number" name="harga" class="form-control" placeholder="Harga" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-4 col-md-2 col-sm-4 form-control-label">
-                            <label for="fasilitas">Fasilitas</label>
-                        </div>
-                        <div class="col-lg-8 col-md-10 col-sm-8">
-                            <div class="form-line">
-                                <textarea rows="4" name="fasilitas" class="form-control no-resize" placeholder="Fasilitas Kamar"></textarea>
-                            </div>
-                        </div>
-                    </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="No_Kamar">Nomor Kamar</label>
+                        <input type="number" class="form-control" name="no_kamar" id="no_kamar" placeholder="Nomor Kamar" required> 
+                      </div>
+                      <div class="form-group">
+                        <label for="lokasi">Lokasi</label>
+                          <select class="form-control" id="lokasi" name="lokasi" required>
+                            <option value="">--Pilih--</option>
+                            <option value="Lantai 1">Lantai 1</option>
+                            <option value="Lantai 2">Lantai 2</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="harga">Harga</label>
+                        <input type="number" class="form-control" id="harga" name="harga" placeholder="Harga Kamar" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="fasilitas">Fasilitas</label>
+                        <input type="text" class="form-control" name="fasilitas" id="fasilitas" placeholder="Fasilitas Kamar" required>
+                        <input type="hidden" name="foto" value="foto.jpg">
+                      </div>
+                      
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="foto" value="foto.jpg">
-                    <a href="" class="btn btn-danger waves-effect" data-dismiss="modal"><i class="zmdi zmdi-close"></i> Batal</a>
-                    <button type="submit" class="btn btn-success"><i class="zmdi zmdi-save"></i> Simpan</button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-sm btn-success"><i class="icon-save"></i>Simpan</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<!-- Modal Tambah Kamar -->
 
 @endsection

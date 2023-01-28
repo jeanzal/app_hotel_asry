@@ -27,9 +27,9 @@ class KamarController extends Controller
 
         try {
             $kamar->save();
-            return redirect(route('BO.kamar.list'))->with('pesan-berhasil','Berhasil membuat data kamar');;
+            return redirect(route('BO.kamar.index'))->with('pesan-berhasil','Berhasil membuat data kamar');;
         }catch (\Exception $e){
-            return redirect(route('BO.kamar.list'))->with('pesan-gagal','Gagal membuat data kamar');;
+            return redirect(route('BO.kamar.index'))->with('pesan-gagal','Gagal membuat data kamar');;
         }
 
     }
