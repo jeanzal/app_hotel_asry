@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +33,21 @@ Route::group(['middleware' => 'auth:FO'], function () {
 
 Route::group(['middleware' => 'auth:BO'], function () {
     Route::prefix('BO')->group(function () {
+
+        // Dashboard 
         Route::get('/dashboard', [App\Http\Controllers\BO\DashboardController::class, 'index'])->name('BO.dashboard.index');
+
+        // Transaksi 
         Route::get('/transaksi', [App\Http\Controllers\BO\TransaksiController::class, 'index'])->name('BO.transaksi.index');
+        Route::get('/transaksi/tambah_transaksi', [App\Http\Controllers\BO\TransaksiController::class, 'tambah_transaksi'])->name('BO.transaksi.tambah_transaksi');
+
+        // Data Kamar 
         Route::get('/kamar', [App\Http\Controllers\BO\KamarController::class, 'index'])->name('BO.kamar.index');
-        Route::post('/tambah_kamar', [App\Http\Controllers\BO\KamarController::class, 'tambah_kamar'])->name('BO.kamar.tambah_kamar');
+        Route::post('/kamar/tambah_kamar', [App\Http\Controllers\BO\KamarController::class, 'tambah_kamar'])->name('BO.kamar.tambah_kamar');
+        Route::post('/kamar/set_harga_kamar', [App\Http\Controllers\BO\KamarController::class, 'set_harga_kamar'])->name('BO.kamar.set_harga_kamar');
+        Route::post('/kamar/update_kamar', [App\Http\Controllers\BO\KamarController::class, 'update_kamar'])->name('BO.kamar.update_kamar');
+        Route::get('/kamar/hapus_kamar/{id}', [App\Http\Controllers\BO\KamarController::class, 'hapus_kamar'])->name('BO.kamar.hapus_kamar');
+        Route::get('/kamar/edit_kamar/{id}', [App\Http\Controllers\BO\KamarController::class, 'edit_kamar'])->name('BO.kamar.edit_kamar');
+
     });
 });

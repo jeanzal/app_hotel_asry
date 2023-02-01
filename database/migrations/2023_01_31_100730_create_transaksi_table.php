@@ -19,6 +19,7 @@ return new class extends Migration
             $table->dateTime('ci');
             $table->dateTime('co');
             $table->integer('price');
+            $table->enum('status', ['Terisi', 'Kosong']);
             $table->string('ket');
             $table->unsignedBigInteger('kamar_no');
             $table->foreign('kamar_no')->references('id')->on('kamar')->onUpdate('cascade')->onDelete('cascade');

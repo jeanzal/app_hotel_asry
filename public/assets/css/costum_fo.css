@@ -1,91 +1,91 @@
-*{
+* {
     width: 100%;
 }
 
-#halaman{
+#halaman {
     width: 100%;
     margin: 0 auto;
 }
 
-.hed{
+.hed {
     width: 100%;
     padding: 2%;
-    background-color: #A38068;
+    background-color: #a38068;
     color: aliceblue;
     border-bottom: 3px solid rgb(97, 97, 97);
     /* border-top: 3px solid rgb(54, 54, 62); */
 }
-.hed_kiri{
+.hed_kiri {
     width: 70%;
     float: left;
 }
-.hed_kiri h5{
+.hed_kiri h5 {
     font-size: 20pt;
 }
 .hed_kiri h5 p {
     font-size: 9pt;
     font-weight: normal;
 }
-.hed_kanan{
+.hed_kanan {
     width: 30%;
     float: right;
     text-align: right;
     font-size: 10pt;
 }
-.clear{
+.clear {
     clear: both;
 }
-.baru{
+.baru {
     margin-top: 13px;
 }
-.hed_kanan a{
+.hed_kanan a {
     text-decoration: none;
     color: rgb(54, 54, 62);
 }
-.hed_kanan a:hover{
+.hed_kanan a:hover {
     color: aliceblue;
     transition: 0.6s;
 }
-.isi{
+.isi {
     width: 100%;
     margin: 0 auto;
     padding: 2%;
 }
-.judul_isi{
+.judul_isi {
     width: 100%;
     background-color: rgb(97, 97, 97);
     padding: 2%;
-    color:  white;
+    color: white;
     font-weight: bold;
     border-radius: 10px 10px 0px 0px;
 }
 .dalam {
     width: 100%;
-    background-color: #A38068;
+    background-color: #f3f3f3;
     padding: 2%;
     color: aliceblue;
     text-align: center;
 }
-.dalam_kiri_kotak{
+.dalam_kiri_kotak {
     width: 50%;
     float: left;
     text-align: center;
     /* background-color: red; */
 }
-.dalam_kanan_kotak{
+.dalam_kanan_kotak {
     width: 50%;
     float: right;
     /* background-color: black; */
 }
-.lantai{
+.lantai {
     width: 100%;
 }
-.kotak_lantai{
+.kotak_lantai {
     width: 100%;
     margin-top: 10px;
     border: 1px solid black;
 }
-.kotak{
+.kotak {
     width: 30%;
     float: left;
     background-color: black;
@@ -95,31 +95,31 @@
 }
 .preloader {
     position: fixed;
-    top: 0;   
-    left: 0;   
-    width: 100%;   
-    height: 100%;   
-    z-index: 9999;   
-    background-color: #fff;   
-  }   
-  .preloader .loading {   
-    position: absolute;   
-    left: 50%;   
-    top: 50%;   
-    transform: translate(-50%,-50%);   
-    font: 14px arial;   
-  }
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: #fff;
+}
+.preloader .loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font: 14px arial;
+}
 .kedip_jam {
     animation: blink-animation 1s steps(5, start) infinite;
     -webkit-animation: blink-animation 1s steps(5, start) infinite;
-  }
-  @keyframes blink-animation {
+}
+@keyframes blink-animation {
     to {
-      visibility: hidden;
+        visibility: hidden;
     }
-  }
-  @-webkit-keyframes blink-animation {
+}
+@-webkit-keyframes blink-animation {
     to {
-      visibility: hidden;
+        visibility: hidden;
     }
-  }
+}

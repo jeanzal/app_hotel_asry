@@ -3,7 +3,8 @@
 
 <div>
     <div class="btn-wrapper">
-      <a href="#" class="btn btn-primary text-white me-0" data-toggle="modal" data-target="#tambah_kamar"><i class="icon-plus"></i> Tambah</a>
+      <a href="#" class="btn btn-primary text-white me-0" data-toggle="modal" data-target="#update_harga_kamar"><i class="icon-download"></i> Set Harga Kamar</a>
+      {{-- <a href="#" class="btn btn-primary text-white me-0" data-toggle="modal" data-target="#tambah_kamar"><i class="icon-plus"></i> Tambah</a> --}}
     </div>
   </div>
 </div>
@@ -22,20 +23,24 @@
                 <th>Aksi</th>
               </tr>
             </thead>
-            @foreach($kamar as $kmr) 
             <tbody>
+              @forelse($kamar as $kmr) 
                 <tr>
                     <td>{{ $kmr->no_kamar }}</td>
                     <td>{{ $kmr->lokasi }}</td>
                     <td>@currency($kmr->harga)</td>
                     <td>{{ $kmr->fasilitas }}</td>
                     <td>
-                        <a href="#" class="btn btn-sm btn-warning">Edit</a>
-                        <a onclick = "return confirm('Apakah Anda Yakin?')" href="#" class="btn btn-sm btn-danger">Hapus</a>
+                        <a href="{{ route('BO.kamar.edit_kamar', $kmr->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        {{-- <a onclick = "return confirm('Apakah Anda Yakin?')" href="{{ route('BO.kamar.hapus_kamar', $kmr->id) }}" class="btn btn-sm btn-danger">Hapus</a> --}}
                     </td>
                 </tr>
+                    @empty
+                    <tr>
+                      <td colspan="5" class="text-center">Data Kamar masih kosong !</td>
+                    </tr>
+                @endforelse
             </tbody>
-            @endforeach
           </table>
         </div>
       </div>
@@ -45,7 +50,7 @@
 
 <!-- Modal Tambah Kamar -->
 
-<div class="modal fade" id="tambah_kamar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="tambah_kamar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -76,9 +81,39 @@
                       <div class="form-group">
                         <label for="fasilitas">Fasilitas</label>
                         <input type="text" class="form-control" name="fasilitas" id="fasilitas" placeholder="Fasilitas Kamar" required>
-                        <input type="hidden" name="foto" value="foto.jpg">
+                        <input type="hidden" name="status" value="1">
                       </div>
                       
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-sm btn-success"><i class="icon-save"></i>Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> --}}
+
+<!-- Modal Tambah Kamar -->
+
+<!-- Modal Update Harga Kamar -->
+
+<div class="modal fade" id="update_harga_kamar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Set Harga Kamar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{route('BO.kamar.set_harga_kamar')}}" method="post" enctype="multipart/form-data" >
+                @csrf
+                <div class="modal-body">
+                      <div class="form-group">
+                        <label for="harga">Set Harga Baru</label>
+                        <input type="number" class="form-control" id="harga" name="harga" placeholder="Masukkan Harga Kamar Baru" required>
+                      </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Batal</button>

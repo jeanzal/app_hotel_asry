@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Kamar extends Model
+class Transaksi extends Model
 {
-    protected $table = "kamar";
+    protected $table = "transaksi";
     protected $primaryKey = "id";
 
     protected $fillable = [
-        'no_kamar', 'lokasi', 'harga', 'fasilitas', 'status'
+        'nama_tamu', 'ci', 'co', 'price', 'ket', 'kamar_no'
     ];
 }

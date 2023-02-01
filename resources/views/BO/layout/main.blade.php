@@ -105,6 +105,12 @@
                             <span class="menu-title">Daftar User</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="menu-icon mdi mdi-file-document"></i>
+                            <span class="menu-title">Riwayat Tamu</span>
+                        </a>
+                    </li>
                     <li class="nav-item nav-category">SETTING</li>
                 </ul>
             </nav>

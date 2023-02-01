@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('lokasi', ['Lantai 1', 'Lantai 2']);
             $table->integer('harga');
             $table->string('fasilitas');
-            $table->string('foto')->nullable();
+            $table->integer('status');
             $table->timestamps();
         });
     }
