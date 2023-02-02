@@ -12,8 +12,6 @@
     padding: 2%;
     background-color: #a38068;
     color: aliceblue;
-    border-bottom: 3px solid rgb(97, 97, 97);
-    /* border-top: 3px solid rgb(54, 54, 62); */
 }
 .hed_kiri {
     width: 70%;
@@ -48,50 +46,47 @@
 }
 .isi {
     width: 100%;
-    margin: 0 auto;
-    padding: 2%;
-}
-.judul_isi {
-    width: 100%;
-    background-color: rgb(97, 97, 97);
-    padding: 2%;
-    color: white;
-    font-weight: bold;
-    border-radius: 10px 10px 0px 0px;
-}
-.dalam {
-    width: 100%;
+    min-height: 84vh;
     background-color: #f3f3f3;
     padding: 2%;
-    color: aliceblue;
-    text-align: center;
 }
 .dalam_kiri_kotak {
     width: 50%;
     float: left;
     text-align: center;
-    /* background-color: red; */
 }
 .dalam_kanan_kotak {
     width: 50%;
     float: right;
-    /* background-color: black; */
+    text-align: center;
 }
 .lantai {
     width: 100%;
+    margin-top: 20px;
 }
 .kotak_lantai {
     width: 100%;
     margin-top: 10px;
-    border: 1px solid black;
 }
 .kotak {
     width: 30%;
     float: left;
     background-color: black;
     margin: 1%;
-    padding: 5%;
+    padding: 4%;
     cursor: pointer;
+    border-radius: 10px;
+    color: white;
+    border: none;
+}
+.kotak:hover {
+    background-color: white;
+}
+.nama_tamu {
+    font-size: 10pt;
+    text-align: left;
+    margin-top: -10px;
+    font-weight: bold;
 }
 .preloader {
     position: fixed;

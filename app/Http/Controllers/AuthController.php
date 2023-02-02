@@ -7,10 +7,8 @@ use App\Mail\ResetPassword;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Util\Helper;
-use Illuminate\Support\Facades\Mail;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
@@ -31,7 +29,8 @@ class AuthController extends Controller
         } else if (Auth::guard('BO')->attempt(['email' => $request->email, 'password' => $request->password, 'role' => 'BO', 'status' => 1])) {
             return redirect()->intended('/BO/dashboard');
         } else {
-            return redirect('/login')->with('pesan', 'Password yang anda masukan salah');
+            Alert::info('Password Salah', 'Silahkan masukkan password yang benar !!');
+            return redirect('/login');
         }
     }
 

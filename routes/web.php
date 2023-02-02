@@ -26,6 +26,7 @@ Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->n
 Route::group(['middleware' => 'auth:FO'], function () {
     Route::prefix('FO')->group(function () {
         Route::get('/dashboard', [App\Http\Controllers\FO\DashboardController::class, 'index'])->name('FO.dashboard.index');
+        Route::get('/dashboard/bookRoom/{id}', [App\Http\Controllers\FO\DashboardController::class, 'bookRoom'])->name('FO.dashboard.bookRoom');
     });
 });
 

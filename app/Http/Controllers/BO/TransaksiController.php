@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TransaksiController extends Controller
 {

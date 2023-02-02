@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Kamar;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KamarController extends Controller
 {
@@ -27,9 +28,11 @@ class KamarController extends Controller
 
         try {
             $kamar->save();
-            return redirect(route('BO.kamar.index'))->with('pesan-berhasil','Berhasil membuat data kamar');;
+            Alert::info('Berhasil', 'Berhasil Membuat Data Kamar');
+            return redirect(route('BO.kamar.index'));
         }catch (\Exception $e){
-            return redirect(route('BO.kamar.index'))->with('pesan-gagal','Gagal membuat data kamar');;
+            Alert::info('Gagal', 'Gagal Membuat Data Kamar');
+            return redirect(route('BO.kamar.index'));
         }
 
     }
@@ -49,10 +52,12 @@ class KamarController extends Controller
         $kamar->fasilitas = $request->fasilitas;
         $kamar->status = $request->status;
         try {
-            $kamar->save();
-            return redirect (route('BO.kamar.index'))->with('pesan-berhasil','Berhasil mengubah Kamar');
-        }catch(\Exception $e){
-            return redirect (route('BO.kamar.index'))->with('pesan-gagal','Gagal mengubah kamar');
+            $kamar->save();            
+            Alert::info('Berhasil', 'Berhasil Mengupdate Data Kamar');
+            return redirect (route('BO.kamar.index'));
+        }catch(\Exception $e){            
+            Alert::info('Gagal', 'Gagal Mengupdate Data Kamar');
+            return redirect (route('BO.kamar.index'));
         }
     }
 
@@ -62,19 +67,9 @@ class KamarController extends Controller
 
         DB::table('kamar')->update(['harga' => $set_kamar]);
 
-        return to_route('BO.kamar.index')->with('success','Berhasil Set Harga Kamar Baru');
+        Alert::info('Berhasil', 'Berhasil Membuat Harga Baru Kamar');
+        return to_route('BO.kamar.index');
 
     }
-
-    // public function hapus_kamar ($id){
-    //     $dokter = Kamar::findOrFail($id);
-        
-    //     try {
-    //         $dokter->delete();
-    //         return redirect (route('BO.kamar.index'))->with('pesan-berhasil','Berhasil menghapus kamar');
-    //     }catch(\Exception $e){
-    //         return redirect (route('BO.kamar.index'))->with('pesan-gagal','Gagal menghapus kamar');
-    //     }
-    // }
 }
 

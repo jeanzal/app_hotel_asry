@@ -152,6 +152,8 @@
 
     </div>
 
+    @include('sweetalert::alert')
+
     <!-- Javascript -->
 
     <script src="{{ asset('/assets/vendors/js/vendor.bundle.base.js') }}"></script>
