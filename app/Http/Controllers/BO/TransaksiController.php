@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
+use App\Models\Kamar;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TransaksiController extends Controller
@@ -17,20 +19,25 @@ class TransaksiController extends Controller
         return view('BO/content/transaksi/list', compact('trs'));
     }
 
-    public function tambah_kamar(Request $request){
+    public function trsBook(Request $request){
+
+        // var_dump();
+        // dd();
         $trs = new Transaksi();
         $trs->no_kamar = $request->no_kamar;
-        $trs->lokasi = $request->lokasi;
-        $trs->harga = $request->harga;
-        $trs->fasilitas = $request->fasilitas;
-        $trs->foto = $request->foto;
 
-        try {
-            $trs->save();
-            return redirect(route('BO.transaksi.index'))->with('pesan-berhasil','Berhasil membuat data Transaksi');;
-        }catch (\Exception $e){
-            return redirect(route('BO.transaksi.index'))->with('pesan-gagal','Gagal membuat data Transaksi');;
-        }
+        print($trs);
+        // $trs->lokasi = $request->lokasi;
+        // $trs->harga = $request->harga;
+        // $trs->fasilitas = $request->fasilitas;
+        // $trs->foto = $request->foto;
+
+        // try {
+        //     $trs->save();
+        //     return redirect(route('BO.transaksi.index'))->with('pesan-berhasil','Berhasil membuat data Transaksi');;
+        // }catch (\Exception $e){
+        //     return redirect(route('BO.transaksi.index'))->with('pesan-gagal','Gagal membuat data Transaksi');;
+        // }
 
     }
 }

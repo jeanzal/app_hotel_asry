@@ -26,7 +26,10 @@ Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->n
 Route::group(['middleware' => 'auth:FO'], function () {
     Route::prefix('FO')->group(function () {
         Route::get('/dashboard', [App\Http\Controllers\FO\DashboardController::class, 'index'])->name('FO.dashboard.index');
-        Route::get('/dashboard/bookRoom/{id}', [App\Http\Controllers\FO\DashboardController::class, 'bookRoom'])->name('FO.dashboard.bookRoom');
+        Route::post('/dashboard/trsBook', [App\Http\Controllers\FO\DashboardController::class, 'trsBook'])->name('FO.dashboard.trsBook');
+        Route::post('/dashboard/clsBook', [App\Http\Controllers\FO\DashboardController::class, 'clsBook'])->name('FO.dashboard.clsBook');
+        Route::get('/dashboard/{id?}/bookRoom/', [App\Http\Controllers\FO\DashboardController::class, 'bookRoom'])->name('dashboard.bookRoom');
+        Route::get('/dashboard/{id?}/closeBook/', [App\Http\Controllers\FO\DashboardController::class, 'closeBook'])->name('dashboard.closeBook');
     });
 });
 

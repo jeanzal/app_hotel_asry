@@ -23,9 +23,9 @@
 </div>
 <div class="isi">
 
-    <h6 class="fw-bold">
+    <h6 class="fw-bold text-success-emphasis">
         ROOM CHECKIN & CHECKOUT <br>
-        <small>Price Today : <i class="kedip_jam">Rp. 150.000,- </i></small>
+        <small class="">Price Today : <i class="kedip_jam text-danger">@currency($harga_sekarang->harga)</i></small>
     </h6>
     <div class="dalam_kiri_kotak">
         <div class="lantai"><b> ROOM LANTAI I </b></div>
@@ -33,25 +33,34 @@
             @forelse($kamar as $kmr) 
                 @if($kmr->lokasi == "Lantai 1")
                     @if($kmr->status == "1")
-                        <button class="kotak bg-success bookTrsbtn" value="{{ $kmr->id }}">
-                            <h3>{{ $kmr->no_kamar }}</h3>
+                        <a href="javascript:void(0)" data-toggle="modal" class="kotak bg-success bookTrsbtn" data-id="{{ $kmr->id }}">
+                            <h1>{{ $kmr->no_kamar }}</h1>
                             <p class="badge text-bg-light">READY</p>
-                        </button>
+                            <div class="nama_tamu mb-3">
+                                <br>{{-- CI : 2023-02-02 --}}
+                            </div>
+                        </a>
                     @elseif($kmr->status == "2")
-                        <div class="kotak bg-danger" data-bs-toggle="modal" data-bs-target="#CloseBooking">
+                    @foreach ($data as $d)
+                                    @if($d->kamar_no == $kmr->id )
+                        <a href="javascript:void(0)" class="kotak bg-danger closeBook" data-toggle="modal" data-id="{{ $d->id }}">
                             <h3>{{ $kmr->no_kamar }}</h3>
                             <p class="badge text-bg-warning">TERPAKAI</p>
                             <div class="nama_tamu">
-                                ABDUL WAHID <br>
-                                CI : 2023-02-02
+                                
+                                        <b class="text-white">{{ $d->nama_tamu }}</b><br>
+                                        CI : {{ $d->ci }} <br>
+                                        CO : {{ $d->co }}
+                                    
                             </div>
-                        </div>
+                        </a>
+                        @endif
+                                @endforeach
                     @endif
                 @endif
             @empty
                 <div class="text">Room Lantai 1 Tidak Tersedia</div>
             @endforelse
-            
         </div>
     </div>
     <div class="dalam_kanan_kotak">
@@ -60,14 +69,29 @@
             @forelse($kamar as $kmr) 
                 @if($kmr->lokasi == "Lantai 2")
                     @if($kmr->status == "1")
-                        <div class="kotak bg-success" data-bs-toggle="modal" data-bs-target="#FormBooking">
-                            <h3>{{ $kmr->no_kamar }}</h3>
+                        <a href="javascript:void(0)" data-toggle="modal" class="kotak bg-success bookTrsbtn" data-id="{{ $kmr->id }}">
+                            <h1>{{ $kmr->no_kamar }}</h1>
                             <p class="badge text-bg-light">READY</p>
-                        </div>
+                            <div class="nama_tamu mb-3">
+                                <br>{{-- CI : 2023-02-02 --}}
+                            </div>
+                        </a>
                     @elseif($kmr->status == "2")
-                        <div class="kotak bg-warning" data-bs-toggle="modal" data-bs-target="#CloseBooking">
-                            <h3>{{ $kmr->no_kamar }}</h3>
+                    @foreach ($data as $d)
+                                @if($d->kamar_no == $kmr->id )
+                        <a href="javascript:void(0)" class="kotak bg-danger closeBook" data-toggle="modal" data-id="{{ $d->id }}">
+                        <h3>{{ $kmr->no_kamar }}</h3>
+                        <p class="badge text-bg-warning">TERPAKAI</p>
+                        <div class="nama_tamu">
+                            
+                                    <b class="text-white">{{ $d->nama_tamu }}</b><br>
+                                    CI : {{ $d->ci }} <br>
+                                    CO : {{ $d->co }}
+                                
                         </div>
+                    </a>
+                    @endif
+                            @endforeach
                     @endif
                 @endif
             @empty
@@ -80,91 +104,97 @@
     
 </div>
 
-{{-- Modal Clossing Room 
+{{-- Modal Clossing Room  --}}
 <div class="modal fade" id="CloseBooking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Clossing Room</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
         <div class="modal-body">
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="Nama Tamu">
-                        <label for="floatingInput">Nama Tamu</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingDate" placeholder="CI">
-                        <label for="floatingAlamat">Alamat</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="date" class="form-control" id="floatingDate" placeholder="CI">
-                        <label for="floatingDate">Check-In</label>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Email address</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                        <label for="floatingPassword">Password</label>
-                    </div>
-                </div>
+            <div class="text-end">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Request and Save Room</button>
-        </div>
-      </div>
-    </div>
-</div> --}}
-
-{{-- Modal Booking Room  --}}
-<div class="modal fade" id="FormBooking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Booking Room</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form action="">
+            <form action="{{ route('FO.dashboard.clsBook') }}" class="p-5" method="post">
                 @csrf
+                {{-- <input type="text" name="id_kamar" id="trs_id"> --}}
+                <input type="hidden" name="kmr_no" id="kmr_no">
                 <div class="row">
-                    <div class="col-6">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="no_kamar" id="no_kamar" placeholder="Nama Tamu">
-                            <input type="text" class="form-control" name="id" id="id">
-                            <label for="no_kamar">Nomor Kamar</label>
+                    <div class="col-12">
+                        <div class="form-floating mb-5">
+                            <h5>Clossing Room</h5>
+                            <p>Apakah anda yakin tutup kamar ini ?</p>
                         </div>
-                        {{-- <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingDate" placeholder="CI">
-                            <label for="floatingAlamat">Alamat</label>
+                        <div class="text-end">
+                            <button type="button" class="col-2 btn btn-dark" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="col-5 btn btn-danger">Clossing Room</button>
                         </div>
-                        <div class="form-floating">
-                            <input type="date" class="form-control" id="floatingDate" placeholder="CI">
-                            <label for="floatingDate">Check-In</label>
-                        </div> --}}
-                    </div>
-                    <div class="col-6">
-                        {{-- <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Email address</label>
-                        </div>
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
-                        </div> --}}
                     </div>
                 </div>
             </form>
         </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Request and Save Room</button>
+      </div>
+    </div>
+</div>
+
+{{-- Modal Booking Room  --}}
+<div class="modal fade" id="FormBooking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="text-end">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('FO.dashboard.trsBook') }}" class="p-5" method="post">
+                @csrf
+                <input type="hidden" name="id_kamar" id="trs_id">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-floating mb-5">
+                            <h5>Boooking Room</h5>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="namaTamu" id="namaTamu" placeholder="Nama Tamu" required>
+                            <label for="namaTamu">Nama Tamu</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" name="noHP" id="noHp" placeholder="Nomor Telephone/Handhpone" required>
+                            <label for="noHp">Nomor Telephone/HP</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat" required>
+                            <label for="alamat">Alamat</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" name="lamaBooking" onkeyup="sum(); jumlahCO();" id="lamaBooking" placeholder="Lama Booking/Sewa" required>
+                            <label for="lamaBooking">Lama Sewa</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating mb-3 mt-6">
+                            <input type="text" class="form-control" name="no_kamar" id="no_kamar" placeholder="Nomor Kamar" readonly>
+                            <label for="no_kamar">Nomor Kamar</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="harga" id="harga" onkeyup="sum();" placeholder="Harga/Hari" readonly>
+                            <label for="harga">Harga/Hari</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="ci" id="ci" onkeyup="jumlahCO();" value="{{ $CI }}" readonly>
+                            <label for="ci">Check-In</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="co" id="co" placeholder="Check-Out" readonly>
+                            <label for="co">Check-Out</label>
+                        </div>
+                        <div class="form-floating mb-5">
+                            <input type="text" class="form-control" name="price" id="price" placeholder="Total Bayar" readonly>
+                            <label for="price">Total Pembayaran</label>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="col-2 btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="col-3 btn btn-success">Buat Room</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
       </div>
     </div>
@@ -174,24 +204,84 @@
 
 @section('scripts')
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function() {
-
-        $(document).on('click', '.bookTrsbtn', function (){
-            
-            var trs_id = $(this).val();
-            // alert(trs_id);
-            $('#FormBooking').modal('show');
-
-            $.ajax({
-                type: "GET",
-                url: "/bookRoom/"+trs_id,
-                success: function (response){
-                    $('#no_kamar').val(response.kamar.no_kamar)
-                    // $('#id').val(response.kamar.id)
-                    // console.log.(response);
+    $(function() {
+        $.ajaxSetup({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-            });
+        });
+        
+        $('body').on('click', '.bookTrsbtn', function (event) {
+            
+            event.preventDefault();
+            var id = $(this).data('id');
+            $.get('dashboard/' + id + '/bookRoom', function (data) {
+                $('#FormBooking').modal('show');
+                $('#trs_id').val(data.data.id);
+                $('#no_kamar').val(data.data.no_kamar);
+                $('#harga').val(data.data.harga);
+                $('#status').val(data.data.status);
+            })
+
+        });
+    });
+    
+
+    $(document).ready(function(){
+        var d = new Date().toISOString();
+        d = d.replace(/\.\d+/, "");
+        var minDate = d.substring(0, d.length-1);
+
+        $(".datepicker").attr({
+            "value" : minDate,
+            "min" : minDate,
+        });
+    });
+
+    function sum() { 
+        var lamaBook = document.getElementById('lamaBooking').value;
+        var harga_kamar = document.getElementById('harga').value;
+        var result = parseInt(lamaBook) * parseInt(harga_kamar);
+        if (!isNaN(result)) {
+            document.getElementById('price').value = result;
+        }
+    }
+
+    function jumlahCO() { 
+        var lb = document.getElementById('lamaBooking').value;
+        var ta = document.getElementById('ci').value;
+        var hitung = lb*24*60*60*1000;
+
+        var hasilCO = new Date(new Date(ta).getTime()+(hitung));
+        var tanggalCO = hasilCO.toISOString().slice(0,10)
+        var waktuCO = hasilCO.getHours() + ':' + hasilCO.getMinutes() + ':' + hasilCO.getSeconds();
+
+        document.getElementById('co').value = tanggalCO + ' ' + waktuCO
+        
+    }
+</script>
+<script>
+    $(function() {
+        $.ajaxSetup({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+        });
+        
+        $('body').on('click', '.closeBook', function (event) {
+            
+            event.preventDefault();
+            var trs_id = $(this).data('id');
+            $.get('dashboard/' + trs_id + '/closeBook', function (data) {
+                $('#CloseBooking').modal('show');
+                $('#trs_id').val(data.data.id);
+                $('#kmr_no').val(data.data.kamar_no);
+                // $('#no_kamar').val(data.data.no_kamar);
+                // $('#harga').val(data.data.harga);
+                // $('#status').val(data.data.status);
+            })
 
         });
     });
