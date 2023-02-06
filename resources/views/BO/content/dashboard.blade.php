@@ -9,27 +9,27 @@
         <div class="statistics-details d-flex align-items-center justify-content-between">
           <div class="text-center">
             <p class="statistics-title">Total User</p>
-            <h3 class="rate-percentage">5</h3>
+            <h3 class="rate-percentage">{{ $total_user }}</h3>
           </div>
           <div class="text-center">
             <p class="statistics-title">Total Check In Today</p>
-            <h3 class="rate-percentage">2</h3>
+            <h3 class="rate-percentage">{{ $total_ci }}</h3>
           </div>
           <div class="text-center">
             <p class="statistics-title">Total Check Out Today</p>
-            <h3 class="rate-percentage">1</h3>
+            <h3 class="rate-percentage">{{ $total_co }}</h3>
           </div>
           <div class="d-none d-md-block">
             <p class="statistics-title">Total Pemasukan</p>
-            <h3 class="rate-percentage">Rp 520.000</h3>
+            <h3 class="rate-percentage">@currency($total_transaksi)</h3>
           </div>
           <div class="d-none d-md-block">
             <p class="statistics-title">Total Tamu</p>
-            <h3 class="rate-percentage">19</h3>
+            <h3 class="rate-percentage">{{ $total_tamu }}</h3>
           </div>
           <div class="d-none d-md-block">
             <p class="statistics-title">Total Kamar</p>
-            <h3 class="rate-percentage">12</h3>
+            <h3 class="rate-percentage">{{$total_kamar->count()}}</h3>
           </div>
         </div>
       </div>

@@ -37,25 +37,23 @@
                             <h1>{{ $kmr->no_kamar }}</h1>
                             <p class="badge text-bg-light">READY</p>
                             <div class="nama_tamu mb-3">
-                                <br>{{-- CI : 2023-02-02 --}}
+                                <br>
                             </div>
                         </a>
                     @elseif($kmr->status == "2")
-                    @foreach ($data as $d)
-                                    @if($d->kamar_no == $kmr->id )
-                        <a href="javascript:void(0)" class="kotak bg-danger closeBook" data-toggle="modal" data-id="{{ $d->id }}">
-                            <h3>{{ $kmr->no_kamar }}</h3>
-                            <p class="badge text-bg-warning">TERPAKAI</p>
-                            <div class="nama_tamu">
-                                
+                        @foreach ($data as $d)
+                            @if($d->kamar_no == $kmr->id )
+                                <a href="javascript:void(0)" class="kotak bg-danger closeBook" data-toggle="modal" data-id="{{ $d->id }}">
+                                    <h3>{{ $kmr->no_kamar }}</h3>
+                                    <p class="badge text-bg-warning">TERPAKAI</p>
+                                    <div class="nama_tamu">
                                         <b class="text-white">{{ $d->nama_tamu }}</b><br>
                                         CI : {{ $d->ci }} <br>
                                         CO : {{ $d->co }}
-                                    
-                            </div>
-                        </a>
-                        @endif
-                                @endforeach
+                                    </div>
+                                </a>
+                            @endif
+                        @endforeach
                     @endif
                 @endif
             @empty
@@ -73,25 +71,23 @@
                             <h1>{{ $kmr->no_kamar }}</h1>
                             <p class="badge text-bg-light">READY</p>
                             <div class="nama_tamu mb-3">
-                                <br>{{-- CI : 2023-02-02 --}}
+                                <br>
                             </div>
                         </a>
                     @elseif($kmr->status == "2")
-                    @foreach ($data as $d)
-                                @if($d->kamar_no == $kmr->id )
-                        <a href="javascript:void(0)" class="kotak bg-danger closeBook" data-toggle="modal" data-id="{{ $d->id }}">
-                        <h3>{{ $kmr->no_kamar }}</h3>
-                        <p class="badge text-bg-warning">TERPAKAI</p>
-                        <div class="nama_tamu">
-                            
+                        @foreach ($data as $d)
+                            @if($d->kamar_no == $kmr->id )
+                                <a href="javascript:void(0)" class="kotak bg-danger closeBook" data-toggle="modal" data-id="{{ $d->id }}">
+                                <h3>{{ $kmr->no_kamar }}</h3>
+                                <p class="badge text-bg-warning">TERPAKAI</p>
+                                <div class="nama_tamu">
                                     <b class="text-white">{{ $d->nama_tamu }}</b><br>
                                     CI : {{ $d->ci }} <br>
                                     CO : {{ $d->co }}
-                                
-                        </div>
-                    </a>
-                    @endif
-                            @endforeach
+                                </div>
+                            </a>
+                            @endif
+                        @endforeach
                     @endif
                 @endif
             @empty
@@ -114,7 +110,6 @@
             </div>
             <form action="{{ route('FO.dashboard.clsBook') }}" class="p-5" method="post">
                 @csrf
-                {{-- <input type="text" name="id_kamar" id="trs_id"> --}}
                 <input type="hidden" name="kmr_no" id="kmr_no">
                 <div class="row">
                     <div class="col-12">
@@ -269,7 +264,6 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
         });
-        
         $('body').on('click', '.closeBook', function (event) {
             
             event.preventDefault();
@@ -278,9 +272,6 @@
                 $('#CloseBooking').modal('show');
                 $('#trs_id').val(data.data.id);
                 $('#kmr_no').val(data.data.kamar_no);
-                // $('#no_kamar').val(data.data.no_kamar);
-                // $('#harga').val(data.data.harga);
-                // $('#status').val(data.data.status);
             })
 
         });
