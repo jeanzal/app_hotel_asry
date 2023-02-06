@@ -15,7 +15,8 @@ class TransaksiController extends Controller
     public function index()
     {
         Session::put('title', 'Data Transaksi'); 
-        $trs = Transaksi::select("transaksi.*",'kamar.lokasi', 'kamar.no_kamar') ->join('kamar','kamar.id','=','transaksi.kamar_no')->orderBy('transaksi.id')->get();
+        $trs = Transaksi::select("transaksi.*",'kamar.lokasi', 'kamar.no_kamar','kamar.status') 
+            ->join('kamar','kamar.id','=','transaksi.kamar_no')->orderBy('transaksi.id')->get();
         return view('BO/content/transaksi/list', compact('trs'));
     }
 

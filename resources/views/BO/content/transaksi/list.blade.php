@@ -40,7 +40,16 @@
                         <td>{{ $t->co }}</td>
                         <td>@currency($t->price)</td>
                         <td>
-                            <div class="badge badge-danger fw-bold text-uppercase">{{ $t->status }}</div>
+                            @if($t->status == 1)
+                              <div class="badge badge-success fw-bold text-uppercase">
+                                  READY
+                              </div>
+                            @elseif($t->status == 2)
+                              <div class="badge badge-danger fw-bold text-uppercase">
+                                TERPAKAI
+                            </div>
+                            @endif
+                            
                         </td>
                         <td>{{ $t->lokasi }}</td>
                         <td>{{ $t->ket }}</td>
