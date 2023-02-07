@@ -10,7 +10,7 @@ class Transaksi extends Model
     protected $primaryKey = "id";
 
     protected $fillable = [
-        'nama_tamu', 'noHp', 'alamat', 'lama_sewa', 'ci', 'co', 'price', 'kamar_no'
+        'nama_tamu', 'noHp', 'alamat', 'lama_sewa', 'ci', 'co', 'price', 'status', 'kamar_no'
     ];
 
     public function kamar()

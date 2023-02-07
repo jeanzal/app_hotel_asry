@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
             $table->string('nama_tamu');
-            $table->integer('noHp');
+            $table->bigInteger('noHp');
             $table->string('alamat');
             $table->string('lama_sewa');
             $table->dateTime('ci');
             $table->dateTime('co');
-            $table->integer('price');
+            $table->bigInteger('price');
+            $table->integer('status');
             $table->unsignedBigInteger('kamar_no');
             $table->foreign('kamar_no')->references('id')->on('kamar');
             $table->timestamps();

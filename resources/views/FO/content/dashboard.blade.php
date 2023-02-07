@@ -42,16 +42,18 @@
                         </a>
                     @elseif($kmr->status == "2")
                         @foreach ($data as $d)
-                            @if($d->kamar_no == $kmr->id )
-                                <a href="javascript:void(0)" class="kotak bg-danger closeBook" data-toggle="modal" data-id="{{ $d->id }}">
-                                    <h3>{{ $kmr->no_kamar }}</h3>
-                                    <p class="badge text-bg-warning">TERPAKAI</p>
-                                    <div class="nama_tamu">
-                                        <b class="text-white">{{ $d->nama_tamu }}</b><br>
-                                        CI : {{ $d->ci }} <br>
-                                        CO : {{ $d->co }}
-                                    </div>
-                                </a>
+                            @if($d->status == "1")
+                                @if($d->kamar_no == $kmr->id )
+                                    <a href="javascript:void(0)" class="kotak bg-danger closeBook" data-toggle="modal" data-id="{{ $d->id }}">
+                                        <h3>{{ $kmr->no_kamar }}</h3>
+                                        <p class="badge text-bg-warning">TERPAKAI</p>
+                                        <div class="nama_tamu">
+                                            <b class="text-white">{{ $d->nama_tamu }}</b><br>
+                                            CI : {{ $d->ci }} <br>
+                                            CO : {{ $d->co }}
+                                        </div>
+                                    </a>
+                                @endif
                             @endif
                         @endforeach
                     @endif
@@ -76,16 +78,18 @@
                         </a>
                     @elseif($kmr->status == "2")
                         @foreach ($data as $d)
-                            @if($d->kamar_no == $kmr->id )
-                                <a href="javascript:void(0)" class="kotak bg-danger closeBook" data-toggle="modal" data-id="{{ $d->id }}">
-                                <h3>{{ $kmr->no_kamar }}</h3>
-                                <p class="badge text-bg-warning">TERPAKAI</p>
-                                <div class="nama_tamu">
-                                    <b class="text-white">{{ $d->nama_tamu }}</b><br>
-                                    CI : {{ $d->ci }} <br>
-                                    CO : {{ $d->co }}
-                                </div>
-                            </a>
+                            @if($d->status == "1")
+                                @if($d->kamar_no == $kmr->id )
+                                    <a href="javascript:void(0)" class="kotak bg-danger closeBook" data-toggle="modal" data-id="{{ $d->id }}">
+                                    <h3>{{ $kmr->no_kamar }}</h3>
+                                    <p class="badge text-bg-warning">TERPAKAI</p>
+                                    <div class="nama_tamu">
+                                        <b class="text-white">{{ $d->nama_tamu }}</b><br>
+                                        CI : {{ $d->ci }} <br>
+                                        CO : {{ $d->co }}
+                                    </div>
+                                </a>
+                                @endif
                             @endif
                         @endforeach
                     @endif

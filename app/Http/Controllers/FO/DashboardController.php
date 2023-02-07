@@ -49,6 +49,7 @@ class DashboardController extends Controller
         $trs->ci = $request->ci;
         $trs->co = $request->co;
         $trs->price = $request->price;
+        $trs->status = 1;
         $trs->kamar_no = $request->id_kamar;
         $trs->save();
         
@@ -67,6 +68,11 @@ class DashboardController extends Controller
 
     public function clsBook(Request $request)
     {
+        $trs = Transaksi::FindOrfail($request->kmr_no);
+        $trs->status = 2;
+
+        $trs->save();
+
         $kamar = Kamar::FindOrfail($request->kmr_no);
         $kamar->status = 1;
         try {
