@@ -57,6 +57,5 @@ Route::group(['middleware' => 'auth:BO'], function () {
         // Manajemen
         Route::get('/administrator/listFO', [App\Http\Controllers\BO\AdministratorController::class, 'listFO'])->name('BO.administrator.listFO');
         Route::get('/administrator/listBO', [App\Http\Controllers\BO\AdministratorController::class, 'listBO'])->name('BO.administrator.listBO');
-
     });
 });

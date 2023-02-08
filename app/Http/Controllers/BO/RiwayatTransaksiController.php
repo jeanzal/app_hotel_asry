@@ -14,10 +14,9 @@ class RiwayatTransaksiController extends Controller
 {
     public function index()
     {
-        Session::put('title', 'Riwayat Transaksi'); 
-        $trs = Transaksi::select("transaksi.*",'kamar.lokasi', 'kamar.no_kamar') 
-            ->join('kamar','kamar.id','=','transaksi.kamar_no')->orderBy('transaksi.id')->get();
+        Session::put('title', 'Riwayat Transaksi');
+        $trs = Transaksi::select("transaksi.*", 'kamar.lokasi', 'kamar.no_kamar')
+            ->join('kamar', 'kamar.id', '=', 'transaksi.kamar_no')->orderBy('transaksi.id')->get();
         return view('BO/content/transaksi/listRiwayat', compact('trs'));
     }
-
 }

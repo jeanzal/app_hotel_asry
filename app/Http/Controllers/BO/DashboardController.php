@@ -20,10 +20,10 @@ class DashboardController extends Controller
         Session::put('title', 'Dashboard');
         $total_kamar = Kamar::all();
         $total_transaksi = Transaksi::select('transaksi')->sum('price');
-        $total_ci = Kamar::where('status','1')->count();
-        $total_co = Kamar::where('status','2')->count();
+        $total_ci = Kamar::where('status', '1')->count();
+        $total_co = Kamar::where('status', '2')->count();
         $total_tamu = Transaksi::all()->count();
         $total_user = FO::all()->count();
-        return view('BO/content/dashboard', compact('total_kamar','total_transaksi','total_ci','total_co','total_user','total_tamu'));
+        return view('BO/content/dashboard', compact('total_kamar', 'total_transaksi', 'total_ci', 'total_co', 'total_user', 'total_tamu'));
     }
 }
