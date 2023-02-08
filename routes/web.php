@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth:BO'], function () {
 
         // Transaksi 
         Route::get('/transaksi', [App\Http\Controllers\BO\TransaksiController::class, 'index'])->name('BO.transaksi.index');
+        Route::get('/riwayatTransaksi', [App\Http\Controllers\BO\RiwayatTransaksiController::class, 'index'])->name('BO.riwayatTransaksi.index');
         Route::get('/transaksi/tambah_transaksi', [App\Http\Controllers\BO\TransaksiController::class, 'tambah_transaksi'])->name('BO.transaksi.tambah_transaksi');
 
         // Data Kamar 
@@ -52,6 +53,10 @@ Route::group(['middleware' => 'auth:BO'], function () {
         Route::post('/kamar/update_kamar', [App\Http\Controllers\BO\KamarController::class, 'update_kamar'])->name('BO.kamar.update_kamar');
         Route::get('/kamar/hapus_kamar/{id}', [App\Http\Controllers\BO\KamarController::class, 'hapus_kamar'])->name('BO.kamar.hapus_kamar');
         Route::get('/kamar/edit_kamar/{id}', [App\Http\Controllers\BO\KamarController::class, 'edit_kamar'])->name('BO.kamar.edit_kamar');
+
+        // Manajemen
+        Route::get('/administrator/listFO', [App\Http\Controllers\BO\AdministratorController::class, 'listFO'])->name('BO.administrator.listFO');
+        Route::get('/administrator/listBO', [App\Http\Controllers\BO\AdministratorController::class, 'listBO'])->name('BO.administrator.listBO');
 
     });
 });

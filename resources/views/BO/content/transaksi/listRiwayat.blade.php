@@ -25,7 +25,7 @@
             @endphp
                 <tbody>
                     @forelse($trs as $t)
-                      @if($t->status == "1") 
+                      @if($t->status == "2") 
                       <tr>
                           <td>{{ $no++ }}</td>
                           <td>{{ $t->nama_tamu }}</td>
@@ -34,11 +34,11 @@
                           <td>{{ $t->co }}</td>
                           <td>@currency($t->price)</td>
                           <td>
-                              @if($t->status == 1)
-                                <div class="badge badge-success fw-bold text-uppercase">
-                                    BOOKING
+                              @if($t->status == 2)
+                                <div class="badge badge-danger fw-bold text-uppercase">
+                                    CLOSSING
                                 </div>
-                              @endif
+                              @endif                           
                           </td>
                           <td>{{ $t->lokasi }}</td>
                       </tr>
@@ -47,7 +47,6 @@
                       <tr>
                         <td colspan="8" class="text-center">Transaksi masih kosong !</td>
                       </tr>
-                      {{-- @endif --}}
                     @endforelse
                 </tbody>
           </table>

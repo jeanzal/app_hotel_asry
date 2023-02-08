@@ -51,6 +51,9 @@
                 @endforelse
             </tbody>
           </table>
+          {{-- <div class="pagination-cs mt-4">
+            {{ $kamar->links() }}
+          </div> --}}
         </div>
       </div>
     </div>

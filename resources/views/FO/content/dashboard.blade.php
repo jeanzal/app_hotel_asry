@@ -114,6 +114,7 @@
             </div>
             <form action="{{ route('FO.dashboard.clsBook') }}" class="p-5" method="post">
                 @csrf
+                <input type="hidden" name="id_baru" id="id_baru">
                 <input type="hidden" name="kmr_no" id="kmr_no">
                 <div class="row">
                     <div class="col-12">
@@ -274,7 +275,7 @@
             var trs_id = $(this).data('id');
             $.get('dashboard/' + trs_id + '/closeBook', function (data) {
                 $('#CloseBooking').modal('show');
-                $('#trs_id').val(data.data.id);
+                $('#id_baru').val(data.data.id);
                 $('#kmr_no').val(data.data.kamar_no);
             })
 

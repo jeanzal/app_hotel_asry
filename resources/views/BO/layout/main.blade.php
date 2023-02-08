@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/js/select.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/vertical-layout-light/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/costum_bo.css') }}">
     <link rel="shortcut icon" href="{{ asset('/assets/img/logo2.png') }}" />
 </head>
 <body>
@@ -31,7 +32,7 @@
                 </div>
                 <div>
                     <a class="navbar-brand brand-logo" href="{{ route('BO.dashboard.index') }}">
-                        Admin | BO
+                        {{Auth::guard('BO')->user()->name}} | Admin
                     </a>
                     <a class="navbar-brand brand-logo-mini" href="{{ route('BO.dashboard.index') }}">
                         <img src="{{ asset('/assets/img/logo2.png') }}" alt="logo" width="100px"/>
@@ -47,13 +48,12 @@
                 <ul class="navbar-nav ms-auto">          
                 <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                     <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="img-xs rounded-circle" src="{{ asset('assets/images/faces/face8.jpg') }}" alt="Profile image"> </a>
+                    <img class="img-xs rounded-circle" src="{{ asset('assets/img/orang.png') }}" alt="Profile image"> </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                     <div class="dropdown-header text-center">
-                        <img class="img-md rounded-circle" src="{{ asset('assets/images/faces/face8.jpg') }}" alt="Profile image">
-                        <p class="mb-1 mt-3 font-weight-semibold">Back Office</p>
+                        <img class="img-md rounded-circle" src="{{ asset('assets/img/orang.png') }}" width="30px" alt="Profile image">
+                        <p class="mb-1 mt-3 font-weight-semibold">{{Auth::guard('BO')->user()->name}}</p>
                     </div>
-                    <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> Profile</a>
                     <a class="dropdown-item" href="{{route('auth.logout')}}"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Keluar</a>
                     </div>
                 </li>
@@ -98,20 +98,28 @@
                             <span class="menu-title">Transaksi</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('BO.riwayatTransaksi.index')}}">
+                            <i class="menu-icon mdi mdi-file-document"></i>
+                            <span class="menu-title">Riwayat Transaksi</span>
+                        </a>
+                    </li>
                     <li class="nav-item nav-category">MANAJEMEN</li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                            <span class="menu-title">Daftar User</span>
+                        <a class="nav-link" data-bs-toggle="collapse" href="#data_admin" aria-expanded="false" aria-controls="ui-basic">
+                            <i class="menu-icon mdi mdi-floor-plan"></i>
+                            <span class="menu-title">Administrator</span>
+                        <i class="menu-arrow"></i> 
                         </a>
+                        <div class="collapse" id="data_admin">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{{route('BO.administrator.listFO')}}">Front Office</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{route('BO.administrator.listBO')}}">Back Office</a></li>
+                            </ul>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="menu-icon mdi mdi-file-document"></i>
-                            <span class="menu-title">Riwayat Tamu</span>
-                        </a>
-                    </li>
-                    <li class="nav-item nav-category">SETTING</li>
+                    
+                    {{-- <li class="nav-item nav-category">SETTING</li> --}}
                 </ul>
             </nav>
 

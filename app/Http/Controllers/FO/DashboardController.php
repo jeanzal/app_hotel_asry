@@ -12,6 +12,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardController extends Controller
 {
+
     public function index(Request $request)
     {
         $today = Carbon::now()->isoFormat('dddd, D MMMM Y');
@@ -68,7 +69,7 @@ class DashboardController extends Controller
 
     public function clsBook(Request $request)
     {
-        $trs = Transaksi::FindOrfail($request->kmr_no);
+        $trs = Transaksi::FindOrfail($request->id_baru);
         $trs->status = 2;
 
         $trs->save();

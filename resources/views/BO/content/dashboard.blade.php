@@ -42,7 +42,7 @@
               <div class="card-body">
                 <div class="d-sm-flex justify-content-between align-items-start">
                   <div>
-                   <h4 class="card-title card-title-dash">Grafik Pengunjung PerBulan</h4>
+                   <h4 class="card-title card-title-dash">Grafik Pendapatan Minggu Ini</h4>
                   </div>
                   <div id="performance-line-legend"></div>
                 </div>

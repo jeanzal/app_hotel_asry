@@ -17,22 +17,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('bo')->insert([
-            'name' => 'Back Office',
+            'name' => 'BO',
             'role' => 'BO',
             'email' => 'asrigrahahotelyogya@gmail.com',
             'password' => Hash::make('Asrigrahahotel123_'),
         ]);
         DB::table('bo')->insert([
-            'name' => 'Front Office',
-            'role' => 'FO',
-            'email' => 'frontofficeasrygraha@gmail.com',
-            'password' => Hash::make('Frontofficeasg123_'),
-        ]);
-        DB::table('fo')->insert([
-            'name' => 'Back Office',
+            'name' => 'Je',
             'role' => 'BO',
-            'email' => 'asrigrahahotelyogya@gmail.com',
-            'password' => Hash::make('Asrigrahahotel123_'),
+            'email' => 'jeanzal61@gmail.com',
+            'password' => Hash::make('Erliann18@'),
         ]);
         DB::table('fo')->insert([
             'name' => 'Front Office',
