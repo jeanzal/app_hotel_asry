@@ -17,8 +17,53 @@
 <body>
 
     <div id="halaman">
-        @yield('content')
+        <div class="hed sticky-top">
+            <div class="hed_kiri">
+                <h5>
+                    ASRY GRAHA HOTEL - FRONT OFFICE <br>
+                    <p>Jl. Veteran No.147, Pandeyan, Kec. Umbulharjo, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55161
+                    </p>
+                </h5>
+            </div>
+            <div class="hed_kanan">
+                <div class="baru ">
+                    <?php
+                    echo $today . ' ';
+                    echo '<span id="jam_berjalan" class="kedip_jam"></span>';
+                    ?>
+                    <br>
+                </div>
+                <a href="{{ route('auth.logout') }}" data-bs-toggle="modal" data-bs-target="#logoutFO">Keluar <span
+                        class="bi bi-box-arrow-in-right"></span></a>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+        <div class="isi">
+            @yield('content')
+        </div>
     </div>
+
+    <!-- Modal Logout FO -->
+    <div class="modal fade" id="logoutFO" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- End   --}}
     @include('sweetalert::alert')
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -64,6 +109,13 @@
 
             $(".preloader").fadeOut();
 
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setTimeout(function() {
+                location.reload();
+            }, 120000);
         })
     </script>
     @yield('scripts')

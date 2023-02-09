@@ -10,11 +10,11 @@ class Transaksi extends Model
     protected $primaryKey = "id";
 
     protected $fillable = [
-        'nama_tamu', 'noHp', 'alamat', 'lama_sewa', 'ci', 'co', 'price', 'status', 'kamar_no'
+        'nama_tamu', 'noHp', 'alamat', 'lama_sewa', 'ci', 'co', 'price', 'status', 'deposit', 'sisa', 'kamar_no', 'user_id'
     ];
 
     public function kamar()
     {
-    	return $this->belongsTo(Kamar::class);
+        return $this->belongsTo(Kamar::class);
     }
 }

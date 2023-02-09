@@ -1,112 +1,91 @@
 @extends('FO/layout/main')
 @section('content')
 
-    <div class="hed sticky-top">
-        <div class="hed_kiri">
-            <h5>
-                ASRY GRAHA HOTEL - FRONT OFFICE <br>
-                <p>Jl. Veteran No.147, Pandeyan, Kec. Umbulharjo, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55161</p>
-            </h5>
+    <h6 class="fw-bold text-success-emphasis">
+        <div class="reportFOCS text-end">
+            <a class="" data-bs-toggle="modal" data-bs-target="#reportFO">Transaksi Kas</a>
         </div>
-        <div class="hed_kanan">
-            <div class="baru ">
-                <?php
-                echo $today . ' ';
-                echo '<span id="jam_berjalan" class="kedip_jam"></span>';
-                ?>
-                <br>
-            </div>
-            <a href="{{ route('auth.logout') }}">Keluar <span class="bi bi-box-arrow-in-right"></span></a>
-        </div>
-
-        <div class="clear"></div>
-    </div>
-    <div class="isi">
-
-        <h6 class="fw-bold text-success-emphasis">
-            ROOM CHECKIN & CHECKOUT <br>
-            <small class="">Price Today : <i class="kedip_jam text-danger">@currency($harga_sekarang->harga)</i></small>
-        </h6>
-        <div class="dalam_kiri_kotak">
-            <div class="lantai"><b> ROOM LANTAI I </b></div>
-            <div class="kotak_lantai">
-                @forelse($kamar as $kmr)
-                    @if ($kmr->lokasi == 'Lantai 1')
-                        @if ($kmr->status == '1')
-                            <a href="javascript:void(0)" data-toggle="modal" class="kotak bg-success bookTrsbtn"
-                                data-id="{{ $kmr->id }}">
-                                <h1>{{ $kmr->no_kamar }}</h1>
-                                <p class="badge text-bg-light">READY</p>
-                                <div class="nama_tamu mb-3">
-                                    <br>
-                                </div>
-                            </a>
-                        @elseif($kmr->status == '2')
-                            @foreach ($data as $d)
-                                @if ($d->status == '1')
-                                    @if ($d->kamar_no == $kmr->id)
-                                        <a href="javascript:void(0)" class="kotak bg-danger closeBook" data-toggle="modal"
-                                            data-id="{{ $d->id }}">
-                                            <h3>{{ $kmr->no_kamar }}</h3>
-                                            <p class="badge text-bg-warning">TERPAKAI</p>
-                                            <div class="nama_tamu">
-                                                <b class="text-white">{{ $d->nama_tamu }}</b><br>
-                                                CI : {{ $d->ci }} <br>
-                                                CO : {{ $d->co }}
-                                            </div>
-                                        </a>
-                                    @endif
+        ROOM CHE CKIN & CHECKOUT <br>
+        <small class="">Price Today : <i class="kedip_jam text-danger">@currency($harga_sekarang->harga)</i></small>
+    </h6>
+    <div class="dalam_kiri_kotak">
+        <div class="lantai"><b> ROOM LANTAI I </b></div>
+        <div class="kotak_lantai">
+            @forelse($kamar as $kmr)
+                @if ($kmr->lokasi == 'Lantai 1')
+                    @if ($kmr->status == '1')
+                        <a href="javascript:void(0)" data-toggle="modal" class="kotak shadow-lg bg-success bookTrsbtn"
+                            data-id="{{ $kmr->id }}">
+                            <h1>{{ $kmr->no_kamar }}</h1>
+                            <p class="badge text-bg-light">READY</p>
+                            <div class="nama_tamu mb-3">
+                                <br>
+                            </div>
+                        </a>
+                    @elseif($kmr->status == '2')
+                        @foreach ($data as $d)
+                            @if ($d->status == '1')
+                                @if ($d->kamar_no == $kmr->id)
+                                    <a href="javascript:void(0)" class="kotak shadow-lg bg-danger closeBook"
+                                        data-toggle="modal" data-id="{{ $d->id }}">
+                                        <h3>{{ $kmr->no_kamar }}</h3>
+                                        <p class="badge text-bg-warning">TERPAKAI</p>
+                                        <div class="nama_tamu">
+                                            <b class="text-white">{{ $d->nama_tamu }}</b><br>
+                                            CI : {{ $d->ci }} <br>
+                                            CO : {{ $d->co }}
+                                        </div>
+                                    </a>
                                 @endif
-                            @endforeach
-                        @endif
+                            @endif
+                        @endforeach
                     @endif
-                @empty
-                    <div class="text">Room Lantai 1 Tidak Tersedia</div>
-                @endforelse
-            </div>
+                @endif
+            @empty
+                <div class="text">Room Lantai 1 Tidak Tersedia</div>
+            @endforelse
         </div>
-        <div class="dalam_kanan_kotak">
-            <div class="lantai"><b> ROOM LANTAI II </b></div>
-            <div class="kotak_lantai">
-                @forelse($kamar as $kmr)
-                    @if ($kmr->lokasi == 'Lantai 2')
-                        @if ($kmr->status == '1')
-                            <a href="javascript:void(0)" data-toggle="modal" class="kotak bg-success bookTrsbtn"
-                                data-id="{{ $kmr->id }}">
-                                <h1>{{ $kmr->no_kamar }}</h1>
-                                <p class="badge text-bg-light">READY</p>
-                                <div class="nama_tamu mb-3">
-                                    <br>
-                                </div>
-                            </a>
-                        @elseif($kmr->status == '2')
-                            @foreach ($data as $d)
-                                @if ($d->status == '1')
-                                    @if ($d->kamar_no == $kmr->id)
-                                        <a href="javascript:void(0)" class="kotak bg-danger closeBook" data-toggle="modal"
-                                            data-id="{{ $d->id }}">
-                                            <h3>{{ $kmr->no_kamar }}</h3>
-                                            <p class="badge text-bg-warning">TERPAKAI</p>
-                                            <div class="nama_tamu">
-                                                <b class="text-white">{{ $d->nama_tamu }}</b><br>
-                                                CI : {{ $d->ci }} <br>
-                                                CO : {{ $d->co }}
-                                            </div>
-                                        </a>
-                                    @endif
-                                @endif
-                            @endforeach
-                        @endif
-                    @endif
-                @empty
-                    <div class="text">Room Lantai 1 Tidak Tersedia</div>
-                @endforelse
-
-            </div>
-        </div>
-        <div class="clear"></div>
-
     </div>
+    <div class="dalam_kanan_kotak">
+        <div class="lantai"><b> ROOM LANTAI II </b></div>
+        <div class="kotak_lantai">
+            @forelse($kamar as $kmr)
+                @if ($kmr->lokasi == 'Lantai 2')
+                    @if ($kmr->status == '1')
+                        <a href="javascript:void(0)" data-toggle="modal" class="kotak shadow-lg bg-success bookTrsbtn"
+                            data-id="{{ $kmr->id }}">
+                            <h1>{{ $kmr->no_kamar }}</h1>
+                            <p class="badge text-bg-light">READY</p>
+                            <div class="nama_tamu mb-3">
+                                <br>
+                            </div>
+                        </a>
+                    @elseif($kmr->status == '2')
+                        @foreach ($data as $d)
+                            @if ($d->status == '1')
+                                @if ($d->kamar_no == $kmr->id)
+                                    <a href="javascript:void(0)" class="kotak bg-danger shadow-lg closeBook"
+                                        data-toggle="modal" data-id="{{ $d->id }}">
+                                        <h3>{{ $kmr->no_kamar }}</h3>
+                                        <p class="badge text-bg-warning">TERPAKAI</p>
+                                        <div class="nama_tamu">
+                                            <b class="text-white">{{ $d->nama_tamu }}</b><br>
+                                            CI : {{ $d->ci }} <br>
+                                            CO : {{ $d->co }}
+                                        </div>
+                                    </a>
+                                @endif
+                            @endif
+                        @endforeach
+                    @endif
+                @endif
+            @empty
+                <div class="text">Room Lantai 1 Tidak Tersedia</div>
+            @endforelse
+
+        </div>
+    </div>
+    <div class="clear"></div>
 
     {{-- Modal Clossing Room  --}}
     <div class="modal fade" id="CloseBooking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -175,6 +154,11 @@
                                         required>
                                     <label for="lamaBooking">Lama Sewa</label>
                                 </div>
+                                <div class="form-floating mb-3">
+                                    <input type="number" class="form-control" name="deposit" onkeyup="hitungsisa();"
+                                        id="deposit" placeholder="Deposit" required>
+                                    <label for="deposit">Deposit</label>
+                                </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-floating mb-3 mt-6">
@@ -197,10 +181,16 @@
                                         placeholder="Check-Out" readonly>
                                     <label for="co">Check-Out</label>
                                 </div>
-                                <div class="form-floating mb-5">
+                                <div class="form-floating mb-3">
                                     <input type="text" class="form-control" name="price" id="price"
                                         placeholder="Total Bayar" readonly>
-                                    <label for="price">Total Pembayaran</label>
+                                    <label for="price">Total Tagihan</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="sisa" id="sisa"
+                                        placeholder="Sisa" readonly>
+                                    <label for="sisa">Sisa Tagihan</label>
+                                    <input type="hidden" name="id_user" value="{{ Auth::guard('FO')->user()->id }}">
                                 </div>
                                 <div class="text-end">
                                     <button type="button" class="col-2 btn btn-secondary"
@@ -211,6 +201,27 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Report FO  --}}
+    <div class="modal fade" id="reportFO" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-end">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="container">
+                        <h5>Transaksi Kas</h5>
+                        <p>Sisa Saldo <i class="text-danger fw-bold kedip_jam">Rp. 5.000.000</i></p>
+                    </div>
+                </div>
+                {{-- <div class="text-end"> --}}
+                <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
+                {{-- </div> --}}
             </div>
         </div>
     </div>
@@ -264,6 +275,13 @@
             }
         }
 
+        function hitungsisa() {
+            var total_tagihan = document.getElementById('price').value;
+            var depositnya = document.getElementById('deposit').value;
+            var result = parseInt(total_tagihan) - parseInt(depositnya);
+            document.getElementById('sisa').value = result;
+        }
+
         function jumlahCO() {
             var lb = document.getElementById('lamaBooking').value;
             var ta = document.getElementById('ci').value;
@@ -271,9 +289,9 @@
 
             var hasilCO = new Date(new Date(ta).getTime() + (hitung));
             var tanggalCO = hasilCO.toISOString().slice(0, 10)
-            var waktuCO = hasilCO.getHours() + ':' + hasilCO.getMinutes() + ':' + hasilCO.getSeconds();
+            // var waktuCO = hasilCO.getHours() + ':' + hasilCO.getMinutes() + ':' + hasilCO.getSeconds();
 
-            document.getElementById('co').value = tanggalCO + ' ' + waktuCO
+            document.getElementById('co').value = tanggalCO + ' ' + '11:00:00'
 
         }
     </script>

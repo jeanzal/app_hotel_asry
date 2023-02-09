@@ -19,10 +19,9 @@ class DashboardController extends Controller
         Session::put('title', 'Dashboard Front Office');
         $kamar = Kamar::all();
         $harga_sekarang = Kamar::find(3);
-        $CI = date('Y-m-d H:i:s');
+        $CI = date('Y-m-d 14:00:00');
         $data = Transaksi::all();
-        return view('FO/content/dashboard', compact('today', 'kamar','CI', 'harga_sekarang', 'data'));
-
+        return view('FO/content/dashboard', compact('today', 'kamar', 'CI', 'harga_sekarang', 'data'));
     }
     // SELECT kamar.* FROM kamar INNER JOIN transaksi.kamar_no ON transaksi.kamar_no = WHERE transaksi.no_kamar `kamar` = kamar.id limit 1
     public function bookRoom($id)
@@ -50,18 +49,21 @@ class DashboardController extends Controller
         $trs->ci = $request->ci;
         $trs->co = $request->co;
         $trs->price = $request->price;
+        $trs->deposit = $request->deposit;
+        $trs->sisa = $request->sisa;
         $trs->status = 1;
         $trs->kamar_no = $request->id_kamar;
+        $trs->user_id = $request->id_user;
         $trs->save();
-        
+
         $kamar = Kamar::FindOrfail($request->id_kamar);
         $kamar->status = 2;
-        
+
         try {
             $kamar->save();
             Alert::success('Berhasil', 'Berhasil Membuat Room ...');
-            return redirect(route('FO.dashboard.index'));       
-        }catch (\Exception $e){
+            return redirect(route('FO.dashboard.index'));
+        } catch (\Exception $e) {
             Alert::error('Gagal', 'Gagal Membuat, Silahkan periksa data');
             return redirect(route('FO.dashboard.index'));
         }
@@ -79,13 +81,10 @@ class DashboardController extends Controller
         try {
             $kamar->save();
             Alert::success('Berhasil', 'Berhasil Closing Room ...');
-            return redirect(route('FO.dashboard.index'));       
-        }catch (\Exception $e){
+            return redirect(route('FO.dashboard.index'));
+        } catch (\Exception $e) {
             Alert::error('Gagal', 'Gagal Closing Room, silahkan hubungi admin ');
             return redirect(route('FO.dashboard.index'));
         }
-
     }
-
-
 }

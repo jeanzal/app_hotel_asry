@@ -22,9 +22,13 @@ return new class extends Migration
             $table->dateTime('ci');
             $table->dateTime('co');
             $table->bigInteger('price');
+            $table->bigInteger('deposit');
+            $table->bigInteger('sisa');
             $table->integer('status');
             $table->unsignedBigInteger('kamar_no');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('kamar_no')->references('id')->on('kamar');
+            $table->foreign('user_id')->references('id')->on('FO');
             $table->timestamps();
         });
     }

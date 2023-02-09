@@ -113,6 +113,12 @@
 .kotak h1 {
     font-size: 34pt;
 }
+.reportFOCS a {
+    cursor: pointer;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
 .kedip_jam {
     animation: blink-animation 1s steps(5, start) infinite;
     -webkit-animation: blink-animation 1s steps(5, start) infinite;
