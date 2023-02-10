@@ -93,6 +93,9 @@
 .nama_tamu2 {
     margin-bottom: -20px;
 }
+.table-costum-fo tr th {
+    width: 30px;
+}
 .preloader {
     position: fixed;
     top: 0;

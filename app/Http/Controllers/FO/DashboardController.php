@@ -23,7 +23,8 @@ class DashboardController extends Controller
         $harga_sekarang = Kamar::find(3);
         $CI = date('Y-m-d 14:00:00');
         $data = Transaksi::all();
-        return view('FO/content/dashboard', compact('today', 'kamar', 'CI', 'harga_sekarang', 'data'));
+        $data_kas = Transaksikas::all();
+        return view('FO/content/dashboard', compact('today', 'kamar', 'CI', 'harga_sekarang', 'data', 'data_kas'));
     }
     // SELECT kamar.* FROM kamar INNER JOIN transaksi.kamar_no ON transaksi.kamar_no = WHERE transaksi.no_kamar `kamar` = kamar.id limit 1
     public function bookRoom($id)
