@@ -250,20 +250,30 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="container">
-                        <h5>Transaksi Kas</h5>
-                        <p>Sisa Saldo <i class="text-danger fw-bold kedip_jam">Rp. 5.000.000</i></p>
-                        <div class="text-end">
-                            <a type="button"
-                                class="col-2 fw-bold p-2 btn btn-sm btn-primary createTrsKAS within-reportFO">Tambah
-                                Transaksi KAS</a>
+                        <div class="row">
+                            <div class="float-start w-50">
+                                <h5>Transaksi Kas</h5>
+                                <p>Sisa Saldo <i class="text-danger fw-bold kedip_jam">Rp. 5.000.000</i></p>
+                            </div>
+                            <div class="float-end text-end w-50 mt-3">
+                                <a type="button"
+                                    class="col-4 fw-bold p-2 btn btn-sm btn-primary createTrsKAS within-reportFO">Tambah
+                                    Transaksi KAS</a>
+                            </div>
                         </div>
-                        <table>
+                        <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Kas Masuk</th>
+                                    <th>Nama</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Jean</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -291,6 +301,7 @@
                                 ke
                                 Transaksi KAS</a>
                         </div>
+
 
                     </div>
                 </div>

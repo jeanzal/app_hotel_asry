@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\Kamar;
 use App\Models\Transaksi;
+use App\Models\Transaksikas;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -56,6 +57,16 @@ class DashboardController extends Controller
         $trs->kamar_no = $request->id_kamar;
         $trs->user_id = $request->id_user;
         $trs->save();
+
+        $trsKAS = new Transaksikas();
+        $trsKAS->tgl_trs = $request->ci;
+        $trsKAS->ket = 'Check In Kamar ' . $request->no_kamar . ' an. ' . $request->namaTamu;
+        $trsKAS->kas_masuk = $request->deposit;
+        $trsKAS->kas_keluar = 0;
+        $trsKAS->setoran_agh_to_sgh = 0;
+        $saldo_akhir = $request->deposit - $request->kas_keluar - $request->setoran_agh_to_sgh;
+        $trsKAS->saldo = $saldo_akhir;
+        $trsKAS->save();
 
         $kamar = Kamar::FindOrfail($request->id_kamar);
         $kamar->status = 2;
