@@ -253,36 +253,8 @@
                         <h5>Transaksi Kas</h5>
                         <p>Sisa Saldo <i class="text-danger fw-bold kedip_jam">Rp. 5.000.000</i></p>
                         <div class="text-end">
-                            <a type="button" class="col-2 fw-bold p-2 btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#createKAS">Tambah
-                                Transaksi KAS</a>
-                        </div>
-                        <table></table>
-                    </div>
-                </div>
-                {{-- <div class="text-end"> --}}
-                {{-- </div> --}}
-            </div>
-        </div>
-    </div>
-
-    {{-- End Modal Transaksi Kas  --}}
-
-    {{-- Modal Tambah Transaksi Kas FO  --}}
-    <div class="modal fade" id="createKAS" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="text-end">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="container">
-                        <h5>Transaksi Kas</h5>
-                        <p>Sisa Saldo <i class="text-danger fw-bold kedip_jam">Rp. 5.000.000</i></p>
-                        <div class="text-end">
-                            <a type="button" class="col-2 fw-bold p-2 btn btn-sm btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#reportFO">Tambah
+                            <a type="button"
+                                class="col-2 fw-bold p-2 btn btn-sm btn-primary createTrsKAS within-reportFO">Tambah
                                 Transaksi KAS</a>
                         </div>
                         <table>
@@ -300,43 +272,32 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
+
+    {{-- End Modal Transaksi Kas  --}}
+
+    {{-- Modal Tambah Transaksi Kas FO  --}}
+    <div class="modal fade" id="createKAS" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
                 <div class="modal-body">
-                    Show a second modal and hide this one with the button below.
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open
-                        second modal</button>
+                    <div class="text-end">
+                        <button type="button" class="btn-close createTrsKAS-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="container">
+                        <h5>Tambah Transaksi</h5>
+                        <div class="text-end">
+                            <a type="button" class="col-2 fw-bold p-2 btn btn-sm btn-primary createTrsKAS-close">Kembali
+                                ke
+                                Transaksi KAS</a>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-        tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Hide this modal and show the first with the button below.
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to
-                        first</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Open first modal</button>
+
 
 @endsection
 
@@ -425,6 +386,24 @@
                 })
 
             });
+        });
+    </script>
+    <script>
+        var trsKAS = false;
+        $('.createTrsKAS').on('click', function() {
+            if ($(this).hasClass('within-reportFO')) {
+                within_first_modal = true;
+                $('#reportFO').modal('hide');
+            }
+            $('#createKAS').modal('show');
+        });
+
+        $('.createTrsKAS-close').on('click', function() {
+            $('#createKAS').modal('hide');
+            if (within_first_modal) {
+                $('#reportFO').modal('show');
+                within_first_modal = false;
+            }
         });
     </script>
 @endsection
