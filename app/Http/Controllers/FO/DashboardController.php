@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Models\Kamar;
 use App\Models\Transaksi;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class DashboardController extends Controller
 {

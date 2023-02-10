@@ -90,6 +90,9 @@
     text-align: center;
     color: black;
 }
+.nama_tamu2 {
+    margin-bottom: -20px;
+}
 .preloader {
     position: fixed;
     top: 0;

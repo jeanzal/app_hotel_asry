@@ -3,7 +3,7 @@
 
     <h6 class="fw-bold text-success-emphasis">
         <div class="reportFOCS text-end">
-            <a class="" data-bs-toggle="modal" data-bs-target="#reportFO">Transaksi Kas</a>
+            <a class="col-1 btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#reportFO">Transaksi Kas</a>
         </div>
         ROOM CHE CKIN & CHECKOUT <br>
         <small class="">Price Today : <i class="kedip_jam text-danger">@currency($harga_sekarang->harga)</i></small>
@@ -16,9 +16,10 @@
                     @if ($kmr->status == '1')
                         <a href="javascript:void(0)" data-toggle="modal" class="kotak shadow-lg bg-success bookTrsbtn"
                             data-id="{{ $kmr->id }}">
-                            <h1>{{ $kmr->no_kamar }}</h1>
+                            <br>
+                            <h3 class="mt-3">{{ $kmr->no_kamar }}</h3>
                             <p class="badge text-bg-light">READY</p>
-                            <div class="nama_tamu mb-3">
+                            <div class="nama_tamu2 mb-4">
                                 <br>
                             </div>
                         </a>
@@ -32,8 +33,24 @@
                                         <p class="badge text-bg-warning">TERPAKAI</p>
                                         <div class="nama_tamu">
                                             <b class="text-white">{{ $d->nama_tamu }}</b><br>
-                                            CI : {{ $d->ci }} <br>
-                                            CO : {{ $d->co }}
+                                            @php
+                                                $datetimeCI = $d->ci;
+                                                $datetimeCO = $d->co;
+                                                $tglCI = date_create($datetimeCI);
+                                                $tglCO = date_create($datetimeCO);
+                                                $formatedCI = date_format($tglCI, 'd-m-Y');
+                                                $formatedCO = date_format($tglCO, 'd-m-Y');
+                                            @endphp
+                                            CI : {{ $formatedCI }} <br>
+                                            CO : {{ $formatedCO }} <br>
+                                            @if ($d->deposit == $d->price)
+                                                <p class="badge mt-2 text-bg-primary">Lunas</p>
+                                            @elseif($d->deposit < $d->price)
+                                                <p class="badge text-bg-warning">DP = @currency($d->deposit) | Belum Lunas
+                                                    <br>
+                                                    Sisa : @currency($d->sisa)
+                                                </p>
+                                            @endif
                                         </div>
                                     </a>
                                 @endif
@@ -46,6 +63,7 @@
             @endforelse
         </div>
     </div>
+
     <div class="dalam_kanan_kotak">
         <div class="lantai"><b> ROOM LANTAI II </b></div>
         <div class="kotak_lantai">
@@ -54,9 +72,10 @@
                     @if ($kmr->status == '1')
                         <a href="javascript:void(0)" data-toggle="modal" class="kotak shadow-lg bg-success bookTrsbtn"
                             data-id="{{ $kmr->id }}">
-                            <h1>{{ $kmr->no_kamar }}</h1>
+                            <br>
+                            <h3 class="mt-3">{{ $kmr->no_kamar }}</h3>
                             <p class="badge text-bg-light">READY</p>
-                            <div class="nama_tamu mb-3">
+                            <div class="nama_tamu2 mb-4">
                                 <br>
                             </div>
                         </a>
@@ -64,14 +83,30 @@
                         @foreach ($data as $d)
                             @if ($d->status == '1')
                                 @if ($d->kamar_no == $kmr->id)
-                                    <a href="javascript:void(0)" class="kotak bg-danger shadow-lg closeBook"
+                                    <a href="javascript:void(0)" class="kotak shadow-lg bg-danger closeBook"
                                         data-toggle="modal" data-id="{{ $d->id }}">
                                         <h3>{{ $kmr->no_kamar }}</h3>
                                         <p class="badge text-bg-warning">TERPAKAI</p>
                                         <div class="nama_tamu">
                                             <b class="text-white">{{ $d->nama_tamu }}</b><br>
-                                            CI : {{ $d->ci }} <br>
-                                            CO : {{ $d->co }}
+                                            @php
+                                                $datetimeCI = $d->ci;
+                                                $datetimeCO = $d->co;
+                                                $tglCI = date_create($datetimeCI);
+                                                $tglCO = date_create($datetimeCO);
+                                                $formatedCI = date_format($tglCI, 'd-m-Y');
+                                                $formatedCO = date_format($tglCO, 'd-m-Y');
+                                            @endphp
+                                            CI : {{ $formatedCI }} <br>
+                                            CO : {{ $formatedCO }} <br>
+                                            @if ($d->deposit == $d->price)
+                                                <p class="badge mt-2 text-bg-primary">Lunas</p>
+                                            @elseif($d->deposit < $d->price)
+                                                <p class="badge text-bg-warning">DP = @currency($d->deposit) | Belum Lunas
+                                                    <br>
+                                                    Sisa : @currency($d->sisa)
+                                                </p>
+                                            @endif
                                         </div>
                                     </a>
                                 @endif
@@ -217,14 +252,91 @@
                     <div class="container">
                         <h5>Transaksi Kas</h5>
                         <p>Sisa Saldo <i class="text-danger fw-bold kedip_jam">Rp. 5.000.000</i></p>
+                        <div class="text-end">
+                            <a type="button" class="col-2 fw-bold p-2 btn btn-sm btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#createKAS">Tambah
+                                Transaksi KAS</a>
+                        </div>
+                        <table></table>
                     </div>
                 </div>
                 {{-- <div class="text-end"> --}}
-                <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
                 {{-- </div> --}}
             </div>
         </div>
     </div>
+
+    {{-- End Modal Transaksi Kas  --}}
+
+    {{-- Modal Tambah Transaksi Kas FO  --}}
+    <div class="modal fade" id="createKAS" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-end">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="container">
+                        <h5>Transaksi Kas</h5>
+                        <p>Sisa Saldo <i class="text-danger fw-bold kedip_jam">Rp. 5.000.000</i></p>
+                        <div class="text-end">
+                            <a type="button" class="col-2 fw-bold p-2 btn btn-sm btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#reportFO">Tambah
+                                Transaksi KAS</a>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kas Masuk</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                {{-- <div class="text-end"> --}}
+                {{-- </div> --}}
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Show a second modal and hide this one with the button below.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open
+                        second modal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Hide this modal and show the first with the button below.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to
+                        first</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Open first modal</button>
 
 @endsection
 

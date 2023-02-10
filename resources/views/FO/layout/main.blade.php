@@ -17,6 +17,9 @@
 <body>
 
     <div id="halaman">
+
+        {{-- Header FO  --}}
+
         <div class="hed sticky-top">
             <div class="hed_kiri">
                 <h5>
@@ -33,37 +36,49 @@
                     ?>
                     <br>
                 </div>
-                <a href="{{ route('auth.logout') }}" data-bs-toggle="modal" data-bs-target="#logoutFO">Keluar <span
+                <a href="#" data-bs-toggle="modal" data-bs-target="#logoutFO">Keluar <span
                         class="bi bi-box-arrow-in-right"></span></a>
             </div>
 
             <div class="clear"></div>
         </div>
+
+        {{-- End Header FO --}}
+
+
         <div class="isi">
             @yield('content')
         </div>
     </div>
 
     <!-- Modal Logout FO -->
+
     <div class="modal fade" id="logoutFO" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                <div class="modal-body p-5">
+                    <div class="text-end">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-floating mb-5">
+                                <h5>Keluar Halaman</h5>
+                                <p>Apakah anda yakin keluar ingin di halaman ini ?</p>
+                            </div>
+                            <div class="text-end">
+                                <button type="button" class="col-2 btn btn-dark" data-bs-dismiss="modal">Batal</button>
+                                <a href="{{ route('auth.logout') }}" class="col-3 btn btn-danger">Keluar</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    {{-- End   --}}
+    {{-- End Modal Logout FO --}}
+
     @include('sweetalert::alert')
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
