@@ -5,7 +5,7 @@
         <div class="reportFOCS text-end">
             <a class="col-1 btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#reportFO">Transaksi Kas</a>
         </div>
-        ROOM CHE CKIN & CHECKOUT <br>
+        SHIFT - <br>
         <small class="">Price Today : <i class="kedip_jam text-danger">@currency($harga_sekarang->harga)</i></small>
     </h6>
     <div class="dalam_kiri_kotak">
@@ -123,211 +123,20 @@
     <div class="clear"></div>
 
     {{-- Modal Clossing Room  --}}
-    <div class="modal fade" id="CloseBooking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="text-end">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="{{ route('FO.dashboard.clsBook') }}" class="p-5" method="post">
-                        @csrf
-                        <input type="hidden" name="id_baru" id="id_baru">
-                        <input type="hidden" name="kmr_no" id="kmr_no">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-floating mb-5">
-                                    <h5>Clossing Room</h5>
-                                    <p>Apakah anda yakin tutup kamar ini ?</p>
-                                </div>
-                                <div class="text-end">
-                                    <button type="button" class="col-2 btn btn-dark" data-bs-dismiss="modal">Batal</button>
-                                    <button type="submit" class="col-5 btn btn-danger">Clossing Room</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('FO/content/formClsBook')
+    {{-- End Modal Clossing Room  --}}
 
     {{-- Modal Booking Room  --}}
-    <div class="modal fade" id="FormBooking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="text-end">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="{{ route('FO.dashboard.trsBook') }}" class="p-5" method="post">
-                        @csrf
-                        <input type="hidden" name="id_kamar" id="trs_id">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-floating mb-5">
-                                    <h5>Boooking Room</h5>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="namaTamu" id="namaTamu"
-                                        placeholder="Nama Tamu" required>
-                                    <label for="namaTamu">Nama Tamu</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" name="noHP" id="noHp"
-                                        placeholder="Nomor Telephone/Handhpone" required>
-                                    <label for="noHp">Nomor Telephone/HP</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="alamat" id="alamat"
-                                        placeholder="Alamat" required>
-                                    <label for="alamat">Alamat</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" name="lamaBooking"
-                                        onkeyup="sum(); jumlahCO();" id="lamaBooking" placeholder="Lama Booking/Sewa"
-                                        required>
-                                    <label for="lamaBooking">Lama Sewa</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" name="deposit" onkeyup="hitungsisa();"
-                                        id="deposit" placeholder="Deposit" required>
-                                    <label for="deposit">Deposit</label>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-floating mb-3 mt-6">
-                                    <input type="text" class="form-control" name="no_kamar" id="no_kamar"
-                                        placeholder="Nomor Kamar" readonly>
-                                    <label for="no_kamar">Nomor Kamar</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="harga" id="harga"
-                                        onkeyup="sum();" placeholder="Harga/Hari" readonly>
-                                    <label for="harga">Harga/Hari</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="ci" id="ci"
-                                        onkeyup="jumlahCO();" value="{{ $CI }}" readonly>
-                                    <label for="ci">Check-In</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="co" id="co"
-                                        placeholder="Check-Out" readonly>
-                                    <label for="co">Check-Out</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="price" id="price"
-                                        placeholder="Total Bayar" readonly>
-                                    <label for="price">Total Tagihan</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" name="sisa" id="sisa"
-                                        placeholder="Sisa" readonly>
-                                    <label for="sisa">Sisa Tagihan</label>
-                                    <input type="hidden" name="id_user" value="{{ Auth::guard('FO')->user()->id }}">
-                                </div>
-                                <div class="text-end">
-                                    <button type="button" class="col-2 btn btn-secondary"
-                                        data-bs-dismiss="modal">Batal</button>
-                                    <button type="submit" class="col-3 btn btn-success">Buat Room</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('FO/content/formBookRoom')
+    {{-- End Modal Booking Room  --}}
 
     {{-- Report FO  --}}
-    <div class="modal fade" id="reportFO" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="text-end">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="container">
-                        <div class="row mb-3">
-                            <div class="float-start w-50">
-                                <h5>Transaksi Kas</h5>
-                                <p>Sisa Saldo <i class="text-danger fw-bold kedip_jam">Rp. 5.000.000</i></p>
-                            </div>
-                            <div class="float-end text-end w-50 mt-3">
-                                <a type="button"
-                                    class="col-4 fw-bold p-2 btn btn-sm btn-primary createTrsKAS within-reportFO">Tambah
-                                    Transaksi KAS</a>
-                            </div>
-                        </div>
-                        <table class="table table-hover table-responsive table-striped">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th style="width: 40px">No</th>
-                                    <th style="width: 350px">Tanggal Transaksi</th>
-                                    <th style="width: 600px">Keterangan</th>
-                                    <th style="width: 200px">Kas Masuk</th>
-                                    <th style="width: 120px">Kas Keluar</th>
-                                    <th style="width: 120px">Setoran AGH</th>
-                                    <th style="width: 120px">Saldo</th>
-                                </tr>
-                            </thead>
-                            @php
-                                $no = 1;
-                            @endphp
-                            @foreach ($data_kas as $d)
-                                <tbody>
-                                    <tr>
-                                        <td style="width: 40px">{{ $no++ }}</td>
-                                        @php
-                                            $formated_tgl_trs = $d->tgl_trs;
-                                            $tglTrs = date_create($formated_tgl_trs);
-                                            $formatTRS = date_format($tglTrs, 'd M Y');
-                                        @endphp
-                                        <td style="width: 250px">{{ $formatTRS }}</td>
-                                        <td style="width: 600px">{{ $d->ket }}</td>
-                                        <td style="width: 200px">@currency($d->kas_masuk)</td>
-                                        <td style="width: 120px">@currency($d->kas_keluar)</td>
-                                        <td style="width: 120px">@currency($d->setoran_agh_to_sgh)</td>
-                                        <td style="width: 120px">@currency($d->saldo)</td>
-                                    </tr>
-                                </tbody>
-                            @endforeach
-                        </table>
-                    </div>
-                </div>
-                {{-- <div class="text-end"> --}}
-                {{-- </div> --}}
-            </div>
-        </div>
-    </div>
-
+    @include('FO/content/transaksi_kas')
     {{-- End Modal Transaksi Kas  --}}
 
     {{-- Modal Tambah Transaksi Kas FO  --}}
-    <div class="modal fade" id="createKAS" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="text-end">
-                        <button type="button" class="btn-close createTrsKAS-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="container">
-                        <h5>Tambah Transaksi</h5>
-                        <div class="text-end">
-                            <a type="button" class="col-2 fw-bold p-2 btn btn-sm btn-primary createTrsKAS-close">Kembali
-                                ke
-                                Transaksi KAS</a>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('FO/content/tambah_trs_kas')
+    {{-- End Modal Tambah Transaski  --}}
 
 
 @endsection
