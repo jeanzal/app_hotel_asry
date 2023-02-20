@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $CI = date('Y-m-d 14:00:00');
         $date_now = date('Y-m-d h:i:s');
         $data = Transaksi::all();
-        $data_kas = Transaksikas::whereBetween('tgl_trs', [$date_now, $tomorrow])->get();
+        $data_kas = Transaksikas::whereBetween('tgl_trs', [$today, $tomorrow])->get();
         return view('FO/content/dashboard', compact('today', 'kamar', 'CI', 'harga_sekarang', 'data', 'data_kas', 'date_now'));
     }
 
@@ -102,6 +102,27 @@ class DashboardController extends Controller
             return redirect(route('FO.dashboard.index'));
         } catch (\Exception $e) {
             Alert::error('Gagal', 'Gagal Closing Room, silahkan hubungi admin ');
+            return redirect(route('FO.dashboard.index'));
+        }
+    }
+
+    public function tambahTrsKAS(Request $request)
+    {
+        $trsKAS = new Transaksikas();
+        $trsKAS->tgl_trs = $request->tgl_trs;
+        $trsKAS->ket = $request->ket;
+        $trsKAS->kas_masuk = $request->kas_masuk;
+        $trsKAS->kas_keluar = $request->kas_keluar;
+        $trsKAS->setoran_agh_to_sgh = $request->setoran_agh_to_sgh;
+        $saldo_akhir = $request->kas_masuk - $request->kas_keluar - $request->setoran_agh_to_sgh;
+        $trsKAS->saldo = $saldo_akhir;
+
+        try {
+            $trsKAS->save();
+            Alert::success('Berhasil', 'Berhasil Membuat Transaksi ...');
+            return redirect(route('FO.dashboard.index'));
+        } catch (\Exception $e) {
+            Alert::error('Gagal', 'Gagal Membuat, Silahkan periksa data');
             return redirect(route('FO.dashboard.index'));
         }
     }

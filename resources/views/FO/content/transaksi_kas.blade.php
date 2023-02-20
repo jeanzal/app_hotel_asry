@@ -18,21 +18,21 @@
                         </div>
                     </div>
                     <table class="table table-hover table-responsive table-striped">
-                        <thead class="table-warning">
+                        <thead class="table-success">
                             <tr>
-                                <th style="width: 40px">No</th>
-                                <th style="width: 350px">Tanggal Transaksi</th>
-                                <th style="width: 600px">Keterangan</th>
-                                <th style="width: 200px">Kas Masuk</th>
-                                <th style="width: 120px">Kas Keluar</th>
-                                <th style="width: 120px">Setoran AGH</th>
-                                <th style="width: 120px">Saldo</th>
+                                <th style="width: 40px; text-align:center;">No</th>
+                                <th style="width: 350px; text-align:center;">Tanggal Transaksi</th>
+                                <th style="width: 600px; text-align:center;">Keterangan</th>
+                                <th style="width: 200px; text-align:center;">Kas Masuk</th>
+                                <th style="width: 120px; text-align:center;">Kas Keluar</th>
+                                <th style="width: 120px; text-align:center;">Setoran AGH</th>
+                                <th style="width: 120px; text-align:center;">Saldo</th>
                             </tr>
                         </thead>
                         @php
                             $no = 1;
                         @endphp
-                        @foreach ($data_kas as $d)
+                                @forelse ($data_kas as $d)
                             <tbody>
                                 <tr>
                                     <td style="width: 40px">{{ $no++ }}</td>
@@ -48,8 +48,12 @@
                                     <td style="width: 120px">@currency($d->setoran_agh_to_sgh)</td>
                                     <td style="width: 120px">@currency($d->saldo)</td>
                                 </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7" rowspan="2" class="text-center text-red">Tidak ada Transaksi</td>
+                                    </tr>
                             </tbody>
-                        @endforeach
+                            @endforelse
                     </table>
                 </div>
             </div>

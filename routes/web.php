@@ -16,7 +16,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 // Authentikasi 
 
-Route::get('/', [App\Http\Controllers\AuthController::class, 'index'])->name('auth.index');
+Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'index'])->name('auth.index');
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'verify'])->name('auth.verify');
 Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('auth.logout');
@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth:FO'], function () {
     Route::prefix('FO')->group(function () {
         Route::get('/dashboard', [App\Http\Controllers\FO\DashboardController::class, 'index'])->name('FO.dashboard.index');
         Route::post('/dashboard/trsBook', [App\Http\Controllers\FO\DashboardController::class, 'trsBook'])->name('FO.dashboard.trsBook');
+        Route::post('/dashboard/tambahTrsKAS', [App\Http\Controllers\FO\DashboardController::class, 'tambahTrsKAS'])->name('FO.dashboard.tambahTrsKAS');
         Route::post('/dashboard/clsBook', [App\Http\Controllers\FO\DashboardController::class, 'clsBook'])->name('FO.dashboard.clsBook');
         Route::get('/dashboard/{id?}/bookRoom/', [App\Http\Controllers\FO\DashboardController::class, 'bookRoom'])->name('dashboard.bookRoom');
         Route::get('/dashboard/{id?}/closeBook/', [App\Http\Controllers\FO\DashboardController::class, 'closeBook'])->name('dashboard.closeBook');
