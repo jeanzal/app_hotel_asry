@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Models\Kamar;
 use App\Models\Transaksi;
 use App\Models\Transaksikas;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,15 +19,18 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $today = Carbon::now()->isoFormat('dddd, D MMMM Y');
+        $tomorrow = Carbon::tomorrow();
+
         Session::put('title', 'Dashboard Front Office');
         $kamar = Kamar::all();
         $harga_sekarang = Kamar::find(3);
         $CI = date('Y-m-d 14:00:00');
+        $date_now = date('Y-m-d h:i:s');
         $data = Transaksi::all();
-        $data_kas = Transaksikas::all();
-        return view('FO/content/dashboard', compact('today', 'kamar', 'CI', 'harga_sekarang', 'data', 'data_kas'));
+        $data_kas = Transaksikas::whereBetween('tgl_trs', [$date_now, $tomorrow])->get();
+        return view('FO/content/dashboard', compact('today', 'kamar', 'CI', 'harga_sekarang', 'data', 'data_kas', 'date_now'));
     }
-    // SELECT kamar.* FROM kamar INNER JOIN transaksi.kamar_no ON transaksi.kamar_no = WHERE transaksi.no_kamar `kamar` = kamar.id limit 1
+
     public function bookRoom($id)
     {
         $kamar = Kamar::find($id);
@@ -34,6 +38,7 @@ class DashboardController extends Controller
             'data' => $kamar,
         ]);
     }
+
     public function closeBook($id)
     {
         $trs = Transaksi::find($id);
