@@ -47,7 +47,6 @@
                       <tr>
                         <td colspan="8" class="text-center">Transaksi masih kosong !</td>
                       </tr>
-                      {{-- @endif --}}
                     @endforelse
                 </tbody>
           </table>

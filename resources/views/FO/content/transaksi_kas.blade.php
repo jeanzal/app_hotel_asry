@@ -57,8 +57,6 @@
                     </table>
                 </div>
             </div>
-            {{-- <div class="text-end"> --}}
-            {{-- </div> --}}
         </div>
     </div>
 </div>
