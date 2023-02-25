@@ -27,8 +27,18 @@ class DashboardController extends Controller
         $CI = date('Y-m-d 14:00:00');
         $date_now = date('Y-m-d h:i:s');
         $data = Transaksi::all();
+        $coba = DB::table('Transaksikas')
+            ->select(DB::raw('sum(saldo) as sisa_saldo'))
+            ->whereDate('tgl_trs', date('Y-m-d'))
+            ->get();
+        $coba1 = DB::table('Transaksikas')
+            ->select(DB::raw('sum(saldo) as sisa_saldo'))
+            // ->whereDate('tgl_trs', date('Y-m-d'))
+            ->get();
+        print($coba);
+        print($coba1);
         $data_kas = Transaksikas::whereDate('tgl_trs', date('Y-m-d'))->get();
-        return view('FO/content/dashboard', compact('today', 'kamar', 'CI', 'harga_sekarang', 'data', 'data_kas', 'date_now'));
+        return view('FO/content/dashboard', compact('coba', 'today', 'kamar', 'CI', 'harga_sekarang', 'data', 'data_kas', 'date_now'));
     }
 
     public function bookRoom($id)

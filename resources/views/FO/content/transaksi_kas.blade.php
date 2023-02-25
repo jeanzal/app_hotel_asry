@@ -48,12 +48,15 @@
                                     <td style="width: 120px">@currency($d->setoran_agh_to_sgh)</td>
                                     <td style="width: 120px">@currency($d->saldo)</td>
                                 </tr>
+                                
                                 @empty
                                     <tr>
                                         <td colspan="7" rowspan="2" class="text-center text-red">Blom ada Transaksi hari ini</td>
                                     </tr>
                             </tbody>
                             @endforelse
+
+                            {{ $coba }}
                     </table>
                 </div>
             </div>
