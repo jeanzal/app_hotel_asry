@@ -50,7 +50,7 @@
                                 </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" rowspan="2" class="text-center text-red">Tidak ada Transaksi</td>
+                                        <td colspan="7" rowspan="2" class="text-center text-red">Blom ada Transaksi hari ini</td>
                                     </tr>
                             </tbody>
                             @endforelse

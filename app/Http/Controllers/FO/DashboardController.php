@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $CI = date('Y-m-d 14:00:00');
         $date_now = date('Y-m-d h:i:s');
         $data = Transaksi::all();
-        $data_kas = Transaksikas::whereBetween('tgl_trs', [$today, $tomorrow])->get();
+        $data_kas = Transaksikas::whereDate('tgl_trs', date('Y-m-d'))->get();
         return view('FO/content/dashboard', compact('today', 'kamar', 'CI', 'harga_sekarang', 'data', 'data_kas', 'date_now'));
     }
 
