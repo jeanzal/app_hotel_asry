@@ -56,7 +56,10 @@
                             </tbody>
                             @endforelse
 
-                            {{ $coba }}
+                            <tr>
+                                <td colspan="6" rowspan="2" class="text-center text-red">Total</td>
+                                <td>{{ $total_saldo_today }}</td>
+                            </tr>
                     </table>
                 </div>
             </div>
