@@ -23,7 +23,7 @@
         <div class="hed sticky-top">
             <div class="hed_kiri">
                 <h5>
-                    ASRY GRAHA HOTEL - FRONT OFFICE <br>
+                    ASRI GRAHA HOTEL - FRONT OFFICE <br>
                     <p>Jl. Veteran No.147, Pandeyan, Kec. Umbulharjo, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55161
                     </p>
                 </h5>

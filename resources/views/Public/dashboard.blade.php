@@ -107,11 +107,13 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="book_tabel_item">
-                                            <div class="input-group">
-                                                <select class="wide">
+                                            <div class="input-group"size="5">
+                                                <select class="wide" >
                                                     <option data-display="Kamar Tersedia">Pilih Kamar</option>
                                                     @foreach($kamar as $k )
-                                                        <option value="$k->no_kamar">Room {{ $k->no_kamar }}</option>
+                                                        @if($k->status == "1")
+                                                            <option value="$k->no_kamar">Room {{ $k->no_kamar }}</option>
+                                                            @endif
                                                     @endforeach
                                                 </select>
                                             </div>

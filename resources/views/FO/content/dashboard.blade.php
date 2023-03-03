@@ -44,11 +44,11 @@
                                             CI : {{ $formatedCI }} <br>
                                             CO : {{ $formatedCO }} <br>
                                             @if ($d->deposit == $d->price)
-                                                <p class="badge mt-2 text-bg-primary">Lunas</p>
+                                                <p class="badge mt-3 text-bg-primary">Lunas</p>
                                             @elseif($d->deposit < $d->price)
-                                                <p class="badge text-bg-warning">DP = @currency($d->deposit) | Belum Lunas
-                                                    <br>
-                                                    Sisa : @currency($d->sisa)
+                                                <p class="badge text-bg-warning">DP = @currency($d->deposit)
+                                                    <br> Belum Lunas
+                                                    <br> Sisa : @currency($d->sisa)
                                                 </p>
                                             @endif
                                         </div>
@@ -102,9 +102,9 @@
                                             @if ($d->deposit == $d->price)
                                                 <p class="badge mt-2 text-bg-primary">Lunas</p>
                                             @elseif($d->deposit < $d->price)
-                                                <p class="badge text-bg-warning">DP = @currency($d->deposit) | Belum Lunas
-                                                    <br>
-                                                    Sisa : @currency($d->sisa)
+                                                <p class="badge text-bg-warning">DP = @currency($d->deposit) 
+                                                    <br> Belum Lunas
+                                                    <br> Sisa : @currency($d->sisa)
                                                 </p>
                                             @endif
                                         </div>

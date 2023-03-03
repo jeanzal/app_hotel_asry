@@ -28,7 +28,7 @@ class DashboardController extends Controller
         $date_now = date('Y-m-d h:i:s');
         $data = Transaksi::all();
         $data_kas = Transaksikas::whereDate('tgl_trs', date('Y-m-d'))->get();
-        $total_saldo_today = Transaksikas::select(DB::raw('sum(saldo)'))
+        $total_saldo_today = Transaksikas::select(DB::raw('sum(saldo) as sisa_today'))
             ->whereDate('tgl_trs', date('Y-m-d'))
             ->get();
 
