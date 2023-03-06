@@ -37,112 +37,112 @@ class DatabaseSeeder extends Seeder
         DB::table('kamar')->insert([
             'no_kamar' => '11',
             'lokasi' => 'Lantai 1',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '12',
             'lokasi' => 'Lantai 1',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '13',
             'lokasi' => 'Lantai 1',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '14',
             'lokasi' => 'Lantai 1',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '15',
             'lokasi' => 'Lantai 1',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '16',
             'lokasi' => 'Lantai 1',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '17',
             'lokasi' => 'Lantai 1',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '19',
             'lokasi' => 'Lantai 2',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '20',
             'lokasi' => 'Lantai 2',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '21',
             'lokasi' => 'Lantai 2',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '22',
             'lokasi' => 'Lantai 2',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '24',
             'lokasi' => 'Lantai 2',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '25',
             'lokasi' => 'Lantai 2',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '26',
             'lokasi' => 'Lantai 2',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '27',
             'lokasi' => 'Lantai 2',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
         DB::table('kamar')->insert([
             'no_kamar' => '30',
             'lokasi' => 'Lantai 2',
-            'harga' => 150000,
+            'harga' => 100000,
             'fasilitas' => 'Lengkap',
             'status' => 1,
         ]);
