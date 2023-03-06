@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\Kamar;
+use App\Models\SisaSaldo;
 use App\Models\Transaksi;
 use App\Models\Transaksikas;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,7 @@ class DashboardController extends Controller
     {
         $today = Carbon::now()->isoFormat('dddd, D MMMM Y');
         $tomorrow = Carbon::tomorrow();
+        $kemarin = date("Y-m-d", strtotime('-1 days'));
 
         Session::put('title', 'Dashboard Front Office');
         $kamar = Kamar::all();
@@ -28,11 +30,12 @@ class DashboardController extends Controller
         $date_now = date('Y-m-d h:i:s');
         $data = Transaksi::all();
         $data_kas = Transaksikas::whereDate('tgl_trs', date('Y-m-d'))->get();
+        $sisa_saldo_kemarin = SisaSaldo::whereDate('tgl_trs', $kemarin)->get();
         $total_saldo_today = Transaksikas::select(DB::raw('sum(saldo) as sisa_today'))
             ->whereDate('tgl_trs', date('Y-m-d'))
             ->get();
 
-        return view('FO/content/dashboard', compact('total_saldo_today', 'today', 'kamar', 'CI', 'harga_sekarang', 'data', 'data_kas', 'date_now'));
+        return view('FO/content/dashboard', compact('total_saldo_today', 'today', 'kamar', 'CI', 'harga_sekarang', 'data', 'data_kas', 'date_now', 'sisa_saldo_kemarin'));
     }
 
     public function bookRoom($id)

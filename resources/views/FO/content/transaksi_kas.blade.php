@@ -9,16 +9,6 @@
                     <div class="row mb-3">
                         <div class="float-start w-50">
                             <h5>Transaksi Kas</h5>
-                            <p>Sisa Saldo Kemarin <i class="text-danger fw-bold kedip_jam">
-                                @foreach($total_saldo_today as $t)
-                                    @currency($t->sisa_today)
-                                @endforeach
-                            </i></p>
-                            <p>Sisa Saldo Hari Ini <i class="text-danger fw-bold kedip_jam">
-                                @foreach($total_saldo_today as $t)
-                                    @currency($t->sisa_today)
-                                @endforeach
-                            </i></p>
                         </div>
                         <div class="float-end text-end w-50 mt-3">
                             <a type="button"
