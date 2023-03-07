@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\Kamar;
-use App\Models\SisaSaldo;
+use App\Models\Sisasaldo;
 use App\Models\Transaksi;
 use App\Models\Transaksikas;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +30,7 @@ class DashboardController extends Controller
         $date_now = date('Y-m-d h:i:s');
         $data = Transaksi::all();
         $data_kas = Transaksikas::whereDate('tgl_trs', date('Y-m-d'))->get();
-        $sisa_saldo_kemarin = SisaSaldo::whereDate('tgl_trs', $kemarin)->get();
+        $sisa_saldo_kemarin = Sisasaldo::whereDate('tgl_trs', $kemarin)->get();
         $total_saldo_today = Transaksikas::select(DB::raw('sum(saldo) as sisa_today'))
             ->whereDate('tgl_trs', date('Y-m-d'))
             ->get();
@@ -78,7 +78,7 @@ class DashboardController extends Controller
         $trsKAS->kas_keluar = 0;
         $trsKAS->setoran_agh_to_sgh = 0;
         $saldo_akhir = $request->deposit - $request->kas_keluar - $request->setoran_agh_to_sgh;
-        $trsKAS->saldo = $saldo_akhir;
+        $trsKAS->saldo = $request->sisa_saldo - $saldo_akhir;
         $trsKAS->save();
 
         $kamar = Kamar::FindOrfail($request->id_kamar);
@@ -122,7 +122,7 @@ class DashboardController extends Controller
         $trsKAS->kas_keluar = $request->kas_keluar;
         $trsKAS->setoran_agh_to_sgh = $request->setoran_agh_to_sgh;
         $saldo_akhir = $request->kas_masuk - $request->kas_keluar - $request->setoran_agh_to_sgh;
-        $trsKAS->saldo = $saldo_akhir;
+        $trsKAS->saldo = $request->sisa_saldo - $saldo_akhir;
 
         try {
             $trsKAS->save();

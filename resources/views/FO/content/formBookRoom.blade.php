@@ -8,6 +8,10 @@
                 <form action="{{ route('FO.dashboard.trsBook') }}" class="p-5" method="post">
                     @csrf
                     <input type="hidden" name="id_kamar" id="trs_id">
+                    @foreach($sisa_saldo_kemarin as $ss)
+                        <input type="hidden" name="sisa_saldo" value="{{ $ss->sisa_saldo }}" id="trs_id">
+                    @endforeach
+                    
                     <div class="row">
                         <div class="col-6">
                             <div class="form-floating mb-5">

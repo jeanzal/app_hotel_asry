@@ -9,6 +9,14 @@
                     <div class="row mb-3">
                         <div class="float-start w-50">
                             <h5>Transaksi Kas</h5>
+                            <p>Sisa Saldo Kemarin <i class="text-danger fw-bold kedip_jam">
+                                {{ $sisa_saldo_kemarin->sisa_saldo }}
+                            </i></p>
+                            {{-- <p>Sisa Saldo Hari Ini <i class="text-danger fw-bold kedip_jam">
+                                @foreach($total_saldo_today as $t)
+                                    @currency($t->sisa_today)
+                                @endforeach
+                            </i></p> --}}
                         </div>
                         <div class="float-end text-end w-50 mt-3">
                             <a type="button"
@@ -30,22 +38,31 @@
                         </thead>
                         @php
                             $no = 1;
+                            $total_kas_masuk = 0;
+                            $total_kas_keluar = 0;
+                            $total_setor = 0;
+                            $total_saldo = 0;
                         @endphp
                                 @forelse ($data_kas as $d)
+                                @php
+                                    $formated_tgl_trs = $d->tgl_trs;
+                                    $tglTrs = date_create($formated_tgl_trs);
+                                    $formatTRS = date_format($tglTrs, 'd M Y');
+                                    $total_kas_masuk += $d->kas_masuk;
+                                    $total_kas_keluar += $d->kas_keluar;
+                                    $total_setor += $d->setoran_agh_to_sgh;
+                                    $total_saldo += ($d->kas_masuk - $d->kas_keluar - $d->setoran_agh_to_sgh);
+                                    $saldo_jumlah = ($d->kas_masuk - $d->kas_keluar - $d->setoran_agh_to_sgh);
+                                @endphp
                             <tbody>
                                 <tr>
                                     <td style="width: 40px">{{ $no++ }}</td>
-                                    @php
-                                        $formated_tgl_trs = $d->tgl_trs;
-                                        $tglTrs = date_create($formated_tgl_trs);
-                                        $formatTRS = date_format($tglTrs, 'd M Y');
-                                    @endphp
                                     <td style="width: 250px">{{ $formatTRS }}</td>
                                     <td style="width: 400px">{{ $d->ket }}</td>
                                     <td style="width: 200px">@currency($d->kas_masuk)</td>
                                     <td style="width: 120px">@currency($d->kas_keluar)</td>
                                     <td style="width: 120px">@currency($d->setoran_agh_to_sgh)</td>
-                                    <td style="width: 200px">@currency($d->saldo)</td>
+                                    <td style="width: 200px">@currency($saldo_jumlah)</td>
                                 </tr>
                                 
                                 @empty
@@ -56,12 +73,11 @@
                             @endforelse
 
                             <tr>
-                                <td colspan="6" rowspan="2" class="text-center text-red fw-bold">Total</td>
-                                <td class="fw-bold">
-                                    @foreach($total_saldo_today as $t)
-                                        @currency($t->sisa_today)
-                                    @endforeach
-                                </td>
+                                <td colspan="3" rowspan="2" class="text-center text-red fw-bold">Total</td>
+                                <td class="fw-bold"> @currency($total_kas_masuk)</td>
+                                <td class="fw-bold"> @currency($total_kas_keluar) </td>
+                                <td class="fw-bold"> @currency($total_setor) </td>
+                                <td class="fw-bold"> @currency($total_saldo) </td>
                             </tr>
                     </table>
                 </div>

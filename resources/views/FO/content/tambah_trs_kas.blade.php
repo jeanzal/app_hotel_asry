@@ -9,6 +9,9 @@
                 <form action="{{ route('FO.dashboard.tambahTrsKAS') }}" method="post">
                     @csrf
                     <div class="container">
+                        @foreach($sisa_saldo_kemarin as $ss)
+                            <input type="hidden" name="sisa_saldo" value="{{ $ss->sisa_saldo }}" id="trs_id">
+                        @endforeach
                         <h5 class="mb-3">Tambah Transaksi</h5>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="tgl_trs" id="tglTrs"
