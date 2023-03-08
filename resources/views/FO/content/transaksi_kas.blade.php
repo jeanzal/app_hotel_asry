@@ -10,7 +10,9 @@
                         <div class="float-start w-50">
                             <h5>Transaksi Kas</h5>
                             <p>Sisa Saldo Kemarin <i class="text-danger fw-bold kedip_jam">
-                                {{ $sisa_saldo_kemarin->sisa_saldo }}
+                                @foreach($sisa_saldo_kemarin as $ss)
+                                    @currency ($ss->sisa_saldo)
+                                @endforeach
                             </i></p>
                             {{-- <p>Sisa Saldo Hari Ini <i class="text-danger fw-bold kedip_jam">
                                 @foreach($total_saldo_today as $t)
@@ -42,12 +44,17 @@
                             $total_kas_keluar = 0;
                             $total_setor = 0;
                             $total_saldo = 0;
+                            $saldo_kemarin = 0;
+                            foreach ($sisa_saldo_kemarin as $key ) {
+                                $saldo_kemarin = $key->sisa_saldo;    
+                            }
                         @endphp
                                 @forelse ($data_kas as $d)
                                 @php
                                     $formated_tgl_trs = $d->tgl_trs;
                                     $tglTrs = date_create($formated_tgl_trs);
                                     $formatTRS = date_format($tglTrs, 'd M Y');
+
                                     $total_kas_masuk += $d->kas_masuk;
                                     $total_kas_keluar += $d->kas_keluar;
                                     $total_setor += $d->setoran_agh_to_sgh;
@@ -77,7 +84,12 @@
                                 <td class="fw-bold"> @currency($total_kas_masuk)</td>
                                 <td class="fw-bold"> @currency($total_kas_keluar) </td>
                                 <td class="fw-bold"> @currency($total_setor) </td>
-                                <td class="fw-bold"> @currency($total_saldo) </td>
+                                <td class="fw-bold"> 
+                                    @php 
+                                        $sum_trs = $total_saldo + $saldo_kemarin;
+                                    @endphp 
+                                    @currency($sum_trs)
+                                </td>
                             </tr>
                     </table>
                 </div>
