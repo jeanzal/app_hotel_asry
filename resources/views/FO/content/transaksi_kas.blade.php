@@ -21,9 +21,8 @@
                             </i></p> --}}
                         </div>
                         <div class="float-end text-end w-50 mt-3">
-                            <a type="button"
-                                class="col-4 fw-bold p-2 btn btn-sm btn-success createTrsKAS within-reportFO">Tambah
-                                Transaksi KAS</a>
+                            <a type="button" class="col-2 fw-bold p-2 btn btn-sm btn-success createTrsKAS within-reportFO"> + Add Kas </a>
+                            <a type="button" class="col-4 fw-bold p-2 btn btn-sm btn-info approveTrs within-reportFO"> -> Approve Kas </a>
                         </div>
                     </div>
                     <table class="table table-hover table-striped">

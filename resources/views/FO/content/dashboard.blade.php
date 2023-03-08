@@ -138,6 +138,10 @@
     @include('FO/content/tambah_trs_kas')
     {{-- End Modal Tambah Transaski  --}}
 
+    {{-- Modal Approve Transaksi --}}
+    @include('FO/content/approve_trs')
+    {{-- End Modal Approve --}}
+
 
 @endsection
 
@@ -240,6 +244,22 @@
 
         $('.createTrsKAS-close').on('click', function() {
             $('#createKAS').modal('hide');
+            if (within_first_modal) {
+                $('#reportFO').modal('show');
+                within_first_modal = false;
+            }
+        });
+
+        $('.approveTrs').on('click', function() {
+            if ($(this).hasClass('within-reportFO')) {
+                within_first_modal = true;
+                $('#reportFO').modal('hide');
+            }
+            $('#ApproveTRS').modal('show');
+        });
+
+        $('.ApproveTRS-close').on('click', function() {
+            $('#ApproveTRS').modal('hide');
             if (within_first_modal) {
                 $('#reportFO').modal('show');
                 within_first_modal = false;

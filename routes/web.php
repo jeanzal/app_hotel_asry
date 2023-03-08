@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth:FO'], function () {
         Route::get('/dashboard', [App\Http\Controllers\FO\DashboardController::class, 'index'])->name('FO.dashboard.index');
         Route::post('/dashboard/trsBook', [App\Http\Controllers\FO\DashboardController::class, 'trsBook'])->name('FO.dashboard.trsBook');
         Route::post('/dashboard/tambahTrsKAS', [App\Http\Controllers\FO\DashboardController::class, 'tambahTrsKAS'])->name('FO.dashboard.tambahTrsKAS');
+        Route::post('/dashboard/approveTrsKAS', [App\Http\Controllers\FO\DashboardController::class, 'approveTrsKAS'])->name('FO.dashboard.approveTrsKAS');
         Route::post('/dashboard/clsBook', [App\Http\Controllers\FO\DashboardController::class, 'clsBook'])->name('FO.dashboard.clsBook');
         Route::get('/dashboard/{id?}/bookRoom/', [App\Http\Controllers\FO\DashboardController::class, 'bookRoom'])->name('dashboard.bookRoom');
         Route::get('/dashboard/{id?}/closeBook/', [App\Http\Controllers\FO\DashboardController::class, 'closeBook'])->name('dashboard.closeBook');

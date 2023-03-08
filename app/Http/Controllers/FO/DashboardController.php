@@ -31,11 +31,12 @@ class DashboardController extends Controller
         $data = Transaksi::all();
         $data_kas = Transaksikas::whereDate('tgl_trs', date('Y-m-d'))->get();
         $sisa_saldo_kemarin = Sisasaldo::whereDate('tgl_trs', $kemarin)->get();
+        $sisa_saldo = Sisasaldo::whereDate('tgl_trs', date('Y-m-d'))->get();
         $total_saldo_today = Transaksikas::select(DB::raw('sum(saldo) as sisa_today'))
             ->whereDate('tgl_trs', date('Y-m-d'))
             ->get();
 
-        return view('FO/content/dashboard', compact('total_saldo_today', 'today', 'kamar', 'CI', 'harga_sekarang', 'data', 'data_kas', 'date_now', 'sisa_saldo_kemarin'));
+        return view('FO/content/dashboard', compact('sisa_saldo', 'total_saldo_today', 'today', 'kamar', 'CI', 'harga_sekarang', 'data', 'data_kas', 'date_now', 'sisa_saldo_kemarin'));
     }
 
     public function bookRoom($id)
@@ -130,6 +131,22 @@ class DashboardController extends Controller
             return redirect(route('FO.dashboard.index'));
         } catch (\Exception $e) {
             Alert::error('Gagal', 'Gagal Membuat, Silahkan periksa data');
+            return redirect(route('FO.dashboard.index'));
+        }
+    }
+
+    public function approveTrsKAS(Request $request)
+    {
+        $trsApr = new Sisasaldo();
+        $trsApr->tgl_trs = $request->tgl_trs;
+        $trsApr->sisa_saldo = $request->sisa_saldo;
+
+        try {
+            $trsApr->save();
+            Alert::success('Berhasil', 'Berhasil Approve Transaksi ...');
+            return redirect(route('FO.dashboard.index'));
+        } catch (\Exception $e) {
+            Alert::error('Gagal', 'Gagal Approve, ada kesalahan data !!!');
             return redirect(route('FO.dashboard.index'));
         }
     }
